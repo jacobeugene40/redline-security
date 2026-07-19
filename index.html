@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redline Security | Penetration Testing &amp; Offensive Security Training</title>
+<meta name="description" content="Redline Security delivers CREST-aligned penetration testing and hands-on offensive security training for engineering teams that need proof, not promises.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2312181F'/%3E%3Cpath d='M4 18h6l2-9 4 18 3-13 2 4h7' stroke='%23C8391F' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header id="siteHeader">
+  <div class="wrap nav">
+    <a class="logo" href="#top"><span class="dash"></span>REDLINE SECURITY</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services" data-nav>Services</a>
+      <a href="#method" data-nav>Methodology</a>
+      <a href="#credentials" data-nav>Credentials</a>
+      <a href="#reviews" data-nav>Reviews</a>
+      <a href="#faq" data-nav>FAQ</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Request Assessment</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <p class="eyebrow">Offensive Security &amp; Training</p>
+        <h1>We find the <span class="highlight">fault line<svg class="underline-swipe" viewBox="0 0 220 12" aria-hidden="true"><path d="M2 8 C 40 2, 80 2, 110 6 C 140 10, 180 10, 218 4" stroke="#C8391F" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span><br>before something else does.</h1>
+        <p class="lede">Redline Security runs adversarial penetration tests and hands-on offensive-security training for engineering teams who need evidence of risk, not a checklist. Every engagement ends in a report you can act on the same week.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-solid" href="#contact"><span>Request an Assessment</span></a>
+          <a class="btn btn-line" href="#services"><span>Explore Training</span></a>
+        </div>
+        <div class="hero-trust">
+          <span>Trusted by security teams at</span>
+          <div class="trust-marks">
+            <span>FINTECH CO.</span><span>NORTHBEAM</span><span>VERUS HEALTH</span><span>ORBITAL</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fault-panel reveal" data-reveal-delay="120">
+        <div class="fault-panel-head">
+          <span>FIELD REPORT — LIVE SCAN</span>
+          <span class="live"><i class="pulse-dot"></i>ACTIVE</span>
+        </div>
+        <div class="fault-svg-wrap">
+          <svg viewBox="0 0 460 220" width="100%" height="auto" role="img" aria-label="Illustrative diagram of a security scan detecting vulnerabilities along a network trace">
+            <defs>
+              <linearGradient id="lineGlow" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#D89A3E" stop-opacity="0.2"/>
+                <stop offset="50%" stop-color="#D89A3E" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#D89A3E" stop-opacity="0.2"/>
+              </linearGradient>
+            </defs>
+            <line class="grid-line" x1="0" y1="40" x2="460" y2="40"/>
+            <line class="grid-line" x1="0" y1="90" x2="460" y2="90"/>
+            <line class="grid-line" x1="0" y1="140" x2="460" y2="140"/>
+            <line class="grid-line" x1="0" y1="190" x2="460" y2="190"/>
+
+            <path class="fault-line-draw" d="M0,110 L40,110 L55,60 L70,150 L90,110 L140,110 L155,170 L172,40 L190,110 L250,110 L268,80 L286,130 L305,110 L360,110 L378,55 L396,110 L460,110"/>
+
+            <g>
+              <circle class="marker" cx="172" cy="40" r="5" style="animation-delay:0.9s"/>
+              <text class="tag tag-crit" x="182" y="36" style="animation-delay:1s">CRITICAL — AUTH BYPASS</text>
+
+              <circle class="marker" cx="286" cy="130" r="5" style="animation-delay:1.6s"/>
+              <text class="tag" x="296" y="145" style="animation-delay:1.7s">MEDIUM — MISCONFIG</text>
+
+              <circle class="marker" cx="378" cy="55" r="5" style="animation-delay:2.3s"/>
+              <text class="tag tag-crit" x="313" y="50" style="animation-delay:2.4s">HIGH — EXPOSED API</text>
+            </g>
+          </svg>
+        </div>
+        <div class="fault-panel-foot">
+          <span>TARGET: staging.client-env</span>
+          <span>DURATION: 96H</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="wrap stats-grid">
+      <div class="stat reveal">
+        <div class="stat-num" data-count="340" data-suffix="+">0</div>
+        <div class="stat-label">Engagements delivered</div>
+      </div>
+      <div class="stat reveal" data-reveal-delay="80">
+        <div class="stat-num" data-count="1200" data-suffix="+">0</div>
+        <div class="stat-label">Critical findings remediated</div>
+      </div>
+      <div class="stat reveal" data-reveal-delay="160">
+        <div class="stat-num" data-count="6.4" data-suffix=" days" data-decimal="1">0</div>
+        <div class="stat-label">Avg. time to first report</div>
+      </div>
+      <div class="stat reveal" data-reveal-delay="240">
+        <div class="stat-num" data-count="92" data-suffix="%">0</div>
+        <div class="stat-label">Clients who re-engage annually</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Two Engagement Tracks</p>
+        <h2>Test your systems, or train your team to.</h2>
+        <p>Most clients start with an assessment. Many stay for the training — so the next fault line gets caught internally, before it reaches us.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="tracks">
+        <div class="track assess reveal">
+          <span class="track-tag">Assessment Track</span>
+          <h3>Penetration Testing</h3>
+          <p>Manual, adversary-style testing against the systems your business actually depends on — not an automated scan with a logo on the cover page.</p>
+          <ul class="track-list">
+            <li><span>Network &amp; infrastructure pentest</span><span class="code">NET-01</span></li>
+            <li><span>Web &amp; API application testing</span><span class="code">APP-02</span></li>
+            <li><span>Cloud configuration review</span><span class="code">CLD-03</span></li>
+            <li><span>Authorized social engineering</span><span class="code">SOC-04</span></li>
+            <li><span>Red team simulation</span><span class="code">RED-05</span></li>
+          </ul>
+        </div>
+        <div class="track train reveal" data-reveal-delay="120">
+          <span class="track-tag">Training Track</span>
+          <h3>Offensive Security Training</h3>
+          <p>Cohort-based and in-house training that turns your engineers into the first line of defense, taught by people who test in production.</p>
+          <ul class="track-list">
+            <li><span>Ethical hacking bootcamp</span><span class="code">TRN-01</span></li>
+            <li><span>OSCP / CEH exam preparation</span><span class="code">TRN-02</span></li>
+            <li><span>Corporate security awareness</span><span class="code">TRN-03</span></li>
+            <li><span>Live-fire lab environments</span><span class="code">TRN-04</span></li>
+            <li><span>Secure code review workshops</span><span class="code">TRN-05</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <svg viewBox="0 0 140 16"><path d="M0,8 L40,8 L48,2 L56,14 L64,8 L140,8" fill="none" stroke="#C7CEC9" stroke-width="1.5"/></svg>
+  </div>
+
+  <!-- METHODOLOGY -->
+  <section class="section method-strip" id="method">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">How an Engagement Runs</p>
+        <h2>A fixed process. A predictable report.</h2>
+        <p>Every engagement follows the same four stages, so you always know what week you're in.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="method-grid">
+        <div class="method-step reveal">
+          <div class="method-num">01 / SCOPE</div>
+          <h4>Define the target</h4>
+          <p>We agree on scope, rules of engagement, and success criteria before a single test begins.</p>
+        </div>
+        <div class="method-step reveal" data-reveal-delay="80">
+          <div class="method-num">02 / TEST</div>
+          <h4>Run the engagement</h4>
+          <p>Manual and tool-assisted testing against the agreed scope, with critical findings flagged same-day.</p>
+        </div>
+        <div class="method-step reveal" data-reveal-delay="160">
+          <div class="method-num">03 / REPORT</div>
+          <h4>Document the findings</h4>
+          <p>A ranked, reproducible report with evidence, business impact, and concrete remediation steps.</p>
+        </div>
+        <div class="method-step reveal" data-reveal-delay="240">
+          <div class="method-num">04 / VERIFY</div>
+          <h4>Confirm the fix</h4>
+          <p>A free re-test on critical and high findings once your team has shipped a fix.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section class="section creds" id="credentials">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Why Teams Choose Redline</p>
+        <h2>Certified. Accountable. On the record.</h2>
+        <p>Every lead tester on an engagement holds an industry-recognized certification, and every report is signed by name.</p>
+      </div>
+      <div class="cred-row">
+        <div class="cred-card reveal">
+          <span class="mono-tag">CERT</span>
+          <h4>OSCP-certified leads</h4>
+          <p>Every engagement is led by an Offensive Security Certified Professional.</p>
+        </div>
+        <div class="cred-card reveal" data-reveal-delay="80">
+          <span class="mono-tag">CERT</span>
+          <h4>CEH practitioners</h4>
+          <p>Our trainers hold active Certified Ethical Hacker credentials, kept current annually.</p>
+        </div>
+        <div class="cred-card reveal" data-reveal-delay="160">
+          <span class="mono-tag">SCOPE</span>
+          <h4>Written authorization only</h4>
+          <p>We test only within a signed scope of work. No exceptions, no gray areas.</p>
+        </div>
+        <div class="cred-card reveal" data-reveal-delay="240">
+          <span class="mono-tag">NDA</span>
+          <h4>Confidential by default</h4>
+          <p>Every client and finding is covered under mutual NDA before work begins.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <svg viewBox="0 0 140 16"><path d="M0,8 L40,8 L48,2 L56,14 L64,8 L140,8" fill="none" stroke="#C7CEC9" stroke-width="1.5"/></svg>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Client Sign-Off</p>
+        <h2>What teams say after the report lands.</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="t-card reveal">
+          <span class="t-stamp">Engagement closed</span>
+          <p class="quote">The report was the first one our engineers actually read cover to cover. Every finding had a reproduction path.</p>
+          <div class="t-meta"><span>VP Engineering</span><span>Fintech, Series C</span></div>
+        </div>
+        <div class="t-card reveal" data-reveal-delay="80">
+          <span class="t-stamp">Engagement closed</span>
+          <p class="quote">We sent four engineers through the bootcamp. Two found and fixed real issues in our own product within a month.</p>
+          <div class="t-meta"><span>Head of Platform</span><span>SaaS, 200 employees</span></div>
+        </div>
+        <div class="t-card reveal" data-reveal-delay="160">
+          <span class="t-stamp">Engagement closed</span>
+          <p class="quote">Re-test came back clean on every critical finding. Straightforward process from scoping to sign-off.</p>
+          <div class="t-meta"><span>CISO</span><span>Healthcare tech</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Frequently Asked</p>
+        <h2>Before you reach out.</h2>
+      </div>
+      <div class="faq-list reveal">
+        <details open>
+          <summary>Do you test without written authorization?<span class="plus">+</span></summary>
+          <p>No. We only operate under a signed scope of work and rules of engagement. This protects you, your users, and our team.</p>
+        </details>
+        <details>
+          <summary>How long does a typical engagement take?<span class="plus">+</span></summary>
+          <p>Most assessments run 1–3 weeks depending on scope, with critical findings flagged to your team as soon as they're confirmed — not held until the final report.</p>
+        </details>
+        <details>
+          <summary>Do you offer a re-test after remediation?<span class="plus">+</span></summary>
+          <p>Yes. One re-test on critical and high-severity findings is included in every assessment engagement.</p>
+        </details>
+        <details>
+          <summary>Can training be delivered in-house?<span class="plus">+</span></summary>
+          <p>Yes. Our training track runs as public cohorts or as a private, in-house program scoped to your team's stack and threat model.</p>
+        </details>
+        <details>
+          <summary>What does a report actually include?<span class="plus">+</span></summary>
+          <p>An executive summary, a ranked findings list with evidence and business impact, and step-by-step remediation guidance for each issue.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-left reveal">
+        <p class="eyebrow">Start an Engagement</p>
+        <h2>Request an assessment or a training slot.</h2>
+        <p>Tell us what you need tested, or which track your team wants to train on. We reply within one business day with next steps.</p>
+        <div class="contact-detail"><span class="ico">✉</span> engagements@redlinesecurity.example</div>
+        <div class="contact-detail"><span class="ico">☎</span> +1 (555) 019-4420</div>
+        <div class="contact-detail"><span class="ico">◷</span> MON–FRI, 9:00–18:00 ET</div>
+      </div>
+      <div class="reveal" data-reveal-delay="120">
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" placeholder="Jordan Alvarez" required>
+              <span class="field-error">Please enter your name.</span>
+            </div>
+            <div class="field">
+              <label for="company">Company</label>
+              <input id="company" name="company" type="text" placeholder="Company name" required>
+              <span class="field-error">Please enter your company.</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="email">Work email</label>
+              <input id="email" name="email" type="email" placeholder="you@company.com" required>
+              <span class="field-error">Please enter a valid email.</span>
+            </div>
+            <div class="field">
+              <label for="interest">Interested in</label>
+              <select id="interest" name="interest">
+                <option>Penetration testing</option>
+                <option>Offensive security training</option>
+                <option>Both</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">What do you need tested or trained on?</label>
+            <textarea id="message" name="message" placeholder="A brief description of your systems, timeline, or team size."></textarea>
+          </div>
+          <button class="submit-btn" type="submit">
+            <span class="btn-text">Send Request</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+          <p class="form-note">We'll respond from a verified @redlinesecurity.example address within 1 business day.</p>
+          <p class="form-success" id="form-success" role="status">Request received. A member of our team will reply within 1 business day.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">REDLINE SECURITY</div>
+        <p>Penetration testing and offensive security training for teams that need proof, not promises.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#services">Services</a>
+          <a href="#method">Methodology</a>
+          <a href="#credentials">Credentials</a>
+          <a href="#reviews">Reviews</a>
+        </div>
+        <div class="footer-col">
+          <h5>Support</h5>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Redline Security. All rights reserved.</span>
+      <span>Engagements conducted under signed authorization only.</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
