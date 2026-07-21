@@ -300,10 +300,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const DEMO_FINDINGS = [
     { sev: 'INFO', cls: 'sev-info', text: 'Enumerating open services on staging.demo-env…' },
-    { sev: 'MEDIUM', cls: 'sev-med', text: 'TLS config allows a deprecated cipher suite on port 443.' },
+    { sev: 'SEARCHING..', cls: 'sev-med', text: 'TLS config allows a deprecated cipher suite on port 443.' },
     { sev: 'HIGH', cls: 'sev-high', text: 'Exposed internal API endpoint returns verbose stack traces.' },
-    { sev: 'CRITICAL', cls: 'sev-crit', text: 'Auth token does not expire — session replay possible.' },
-    { sev: 'DONE', cls: 'sev-info', text: 'Scan complete. 4 findings ready for review.' }
+    { sev: 'INFO-FETCHED', cls: 'sev-crit', text: 'Auth token does not expire — session replay possible.' },
+    { sev: 'HACKED', cls: 'sev-info', text: 'Scan complete. 4 findings ready and Hacked.' }
   ];
 
   let demoRunning = false;
