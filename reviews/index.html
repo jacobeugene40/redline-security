@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redline Security — Reviews</title>
+    <meta name="description" content="Read what our clients say about their engagements and training cohorts. Then leave your own review." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2312181F'/%3E%3Cpath d='M4 18h6l2-9 4 18 3-13 2 4h7' stroke='%23C8391F' stroke-width='2' fill='none'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+        .page-wrap {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.45s cubic-bezier(.22, .85, .32, 1),
+                transform 0.45s cubic-bezier(.22, .85, .32, 1);
+        }
+        .page-wrap.is-exiting {
+            opacity: 0;
+            transform: translateY(-28px);
+            pointer-events: none;
+        }
+        .page-wrap.is-entering {
+            animation: fadeSlideIn 0.55s cubic-bezier(.22, .85, .32, 1) forwards;
+        }
+        @keyframes fadeSlideIn {
+            0% { opacity: 0; transform: translateY(32px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .page-wrap.is-exiting,
+            .page-wrap.is-entering {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+        /* small tweak for review section spacing */
+        .reviews-section .section-head {
+            margin-bottom: 40px;
+        }
+        .review-video-block {
+            margin-bottom: 48px;
+        }
+    </style>
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('redline-theme');
+                var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body>
+
+    <!-- ===== SPRITE ===== -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <symbol id="icon-network" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="19" r="2.4"/><circle cx="19" cy="19" r="2.4"/><path d="M12 7.4V13M12 13 6.6 17M12 13l5.4 4"/></symbol>
+            <symbol id="icon-cloud" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.1 9.1 4.5 4.5 0 0 0 7 18Z"/></symbol>
+            <symbol id="icon-code" viewBox="0 0 24 24"><path d="m9 8-5 4 5 4M15 8l5 4-5 4"/></symbol>
+            <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="18" cy="9" r="2.6"/><path d="M15.5 14.2c2.6.3 4.5 2.4 4.5 5"/></symbol>
+            <symbol id="icon-flag" viewBox="0 0 24 24"><path d="M5 3v18M5 4h11l-2.5 3.5L16 11H5"/></symbol>
+            <symbol id="icon-doc" viewBox="0 0 24 24"><path d="M6 2h9l4 4v16H6Z"/><path d="M15 2v4h4M9 12h7M9 16h7M9 8h3"/></symbol>
+            <symbol id="icon-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="m15 8-2 5-5 2 2-5 5-2Z"/></symbol>
+            <symbol id="icon-building" viewBox="0 0 24 24"><path d="M4 21V5l8-3v19M12 21V9l8 3v9"/><path d="M8 9h.01M8 13h.01M8 17h.01M16 14h.01M16 18h.01"/></symbol>
+            <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 1 1-3.4-6.5"/><path d="M21 3v6h-6"/></symbol>
+            <symbol id="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7Z"/></symbol>
+            <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 2 3.1 6.7 7.4.8-5.5 5 1.6 7.3L12 18.2 5.4 21.8 7 14.5 1.5 9.5l7.4-.8Z"/></symbol>
+        </defs>
+    </svg>
+
+    <!-- ===== SCROLL PROGRESS ===== -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header id="siteHeader">
+        <div class="wrap nav">
+            <a class="logo" href="../">
+                <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+                    <rect x="1" y="1" width="30" height="30" rx="6" />
+                    <path class="logo-mark-line" d="M5 19h5l2-9 4 18 3-13 2 4h6" />
+                </svg>
+                <span class="logo-text">REDLINE<span class="logo-sub">SECURITY</span></span>
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="../" data-nav>Home</a>
+                <a href="../about/" data-nav>About</a>
+                <a href="../services/" data-nav>Services</a>
+                <a href="../demo/" data-nav>Demo</a>
+                <a href="./" data-nav class="active">Reviews</a>
+                <a href="../faq/" data-nav>FAQ</a>
+            </nav>
+            <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" aria-pressed="false" type="button">
+                <span class="theme-toggle-track">
+                    <span class="theme-toggle-thumb">
+                        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><g class="sun-rays"><line x1="12" y1="1.5" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.5" y2="6.5"/><line x1="17.5" y1="17.5" x2="19.6" y2="19.6"/><line x1="4.4" y1="19.6" x2="6.5" y2="17.5"/><line x1="17.5" y1="6.5" x2="19.6" y2="4.4"/></g></svg>
+                        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+                    </span>
+                </span>
+            </button>
+            <a class="nav-cta" href="../contact/"><span>Request Assessment</span></a>
+            <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== PAGE WRAP ===== -->
+    <main class="page-wrap is-entering" id="pageWrap">
+
+        <!-- ===== REVIEWS SECTION ===== -->
+        <section class="section reviews-section" id="reviews" style="padding-top:120px;">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <p class="eyebrow">Client Sign-Off</p>
+                    <h2>Hear it, then rate it yourself.</h2>
+                    <p>Every engagement and training cohort leaves a mark — read what others have said, then share your own experience.</p>
+                </div>
+
+                <!-- VIDEO BLOCK -->
+                <div class="review-video-block reveal">
+                    <p class="review-video-title">A 90-second look at how an engagement actually feels from your side of the table.</p>
+                    <div class="video-frame" id="videoFrame">
+                        <video id="introVideo" playsinline preload="none" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%230D1319'/%3E%3Cline x1='0' y1='60' x2='640' y2='60' stroke='%2326313B'/%3E%3Cline x1='0' y1='150' x2='640' y2='150' stroke='%2326313B'/%3E%3Cline x1='0' y1='240' x2='640' y2='240' stroke='%2326313B'/%3E%3Cline x1='0' y1='330' x2='640' y2='330' stroke='%2326313B'/%3E%3C/svg%3E">
+                            <source src="../assets/redline-intro.mp4" type="video/mp4">
+                        </video>
+                        <button class="video-play-btn" id="videoPlayBtn" aria-label="Play the client intro video" type="button">
+                            <svg><use href="#icon-play"/></svg>
+                        </button>
+                        <span class="video-badge">CLIENT INTRO</span>
+                    </div>
+                    <p class="video-note">Replace <code>../assets/redline-intro.mp4</code> with your own file to go live.</p>
+                </div>
+
+                <!-- RATE / SUBMIT BLOCK -->
+                <div class="rate-block reveal" data-reveal-delay="80">
+                    <h3>How would you rate our service?</h3>
+                    <p class="rate-sub">Left an engagement or training cohort recently? Tell the next team what to expect.</p>
+                    <form id="review-form" class="review-form" novalidate>
+                        <div class="star-rating" id="starRating">
+                            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars"><svg><use href="#icon-star"/></svg></label>
+                            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars"><svg><use href="#icon-star"/></svg></label>
+                            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars"><svg><use href="#icon-star"/></svg></label>
+                            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars"><svg><use href="#icon-star"/></svg></label>
+                            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star"><svg><use href="#icon-star"/></svg></label>
+                        </div>
+                        <span class="field-error" id="ratingError">Please choose a star rating.</span>
+
+                        <div class="form-row">
+                            <div class="field">
+                                <label for="reviewer-name">Full name</label>
+                                <input id="reviewer-name" name="reviewer-name" type="text" placeholder="Jordan Alvarez" required>
+                                <span class="field-error">Please enter your name.</span>
+                            </div>
+                            <div class="field">
+                                <label for="reviewer-email">Email</label>
+                                <input id="reviewer-email" name="reviewer-email" type="email" placeholder="you@company.com" required>
+                                <span class="field-error">Please enter a valid email.</span>
+                                <span class="field-hint">Shown publicly as jo****@domain.com</span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="reviewer-comment">Your review</label>
+                            <textarea id="reviewer-comment" name="reviewer-comment" placeholder="What stood out about the engagement or training?" required></textarea>
+                            <span class="field-error">Please add a short comment.</span>
+                        </div>
+                        <button class="submit-btn" type="submit">
+                            <span class="btn-text">Submit Review</span>
+                            <span class="btn-spinner" aria-hidden="true"></span>
+                        </button>
+                        <p class="form-success" id="review-success" role="status">Thanks — your review has been posted below.</p>
+                    </form>
+                </div>
+
+                <!-- SUBMITTED REVIEWS LIST -->
+                <div class="submitted-reviews">
+                    <div class="submitted-reviews-head">
+                        <h3>Recent reviews</h3>
+                        <span class="review-count" id="reviewCount">0 reviews</span>
+                    </div>
+                    <div class="review-list" id="reviewList"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ADDITIONAL TESTIMONIAL STRIP ===== -->
+        <section style="padding:40px 0 80px;">
+            <div class="wrap">
+                <div class="testimonial-strip reveal">
+                    <svg class="t-strip-quote" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8c-2.2 0-4 1.8-4 4v4h6v-6H6a2 2 0 0 1 2-2V8Zm10 0c-2.2 0-4 1.8-4 4v4h6v-6h-3a2 2 0 0 1 2-2V8Z"/></svg>
+                    <p>“The training completely changed how our engineers think about security — they now catch issues in PRs before they hit staging.”</p>
+                    <span>— CTO, SaaS Platform, Series B</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="wrap">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+                            <rect x="1" y="1" width="30" height="30" rx="6" />
+                            <path class="logo-mark-line" d="M5 19h5l2-9 4 18 3-13 2 4h6" />
+                        </svg>
+                        REDLINE SECURITY
+                    </div>
+                    <p>Penetration testing and offensive security training for teams that need proof, not promises.</p>
+                    <div class="social-row">
+                        <a class="social-icon" href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.5 4.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 9.8h3V21H3ZM9.5 9.8H12v1.5h.05c.4-.75 1.5-1.6 3.1-1.6 3.3 0 3.9 2.1 3.9 4.9V21h-3v-4.9c0-1.2 0-2.7-1.6-2.7-1.6 0-1.9 1.3-1.9 2.6V21h-3Z"/></svg></a>
+                        <a class="social-icon" href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l7 9.2L4.4 20H6.6l5.6-5.9L16.7 20H20l-7.4-9.7L19.7 4h-2.2l-5.2 5.5L8 4Z"/></svg></a>
+                        <a class="social-icon" href="#" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.3-3.4-1.3-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.8 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7 1 .7 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a>
+                        <a class="social-icon" href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5a2.7 2.7 0 0 0-1.9 1.9A28 28 0 0 0 2 12a28 28 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-4.8ZM10 15V9l5.2 3Z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-cols">
+                    <div class="footer-col">
+                        <h5>Company</h5>
+                        <a href="../about/">About</a>
+                        <a href="../services/">Services</a>
+                        <a href="../demo/">Demo</a>
+                        <a href="./">Reviews</a>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Support</h5>
+                        <a href="../faq/">FAQ</a>
+                        <a href="../contact/">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Redline Security. All rights reserved.</span>
+                <span>Engagements conducted under signed authorization only.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <!-- ===== SHARED SCRIPTS ===== -->
+    <script src="../script.js"></script>
+
+    <!-- ===== PAGE-SPECIFIC INIT ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var wrap = document.getElementById('pageWrap');
+            if (wrap) wrap.classList.add('is-entering');
+
+            // The review logic (form submission, rendering) is already in ../script.js
+            // It will fire automatically because it listens for DOMContentLoaded.
+            // We just need to ensure the seed reviews show up.
+            // The script.js already handles loading from localStorage or seeding.
+        });
+    </script>
+</body>
+</html>

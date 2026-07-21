@@ -115,22 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------------- Active nav link on scroll ---------------- */
-  const sections = Array.from(document.querySelectorAll('section[id]'));
-  const navAnchors = Array.from(document.querySelectorAll('[data-nav]'));
-
-  if (sections.length && navAnchors.length && 'IntersectionObserver' in window) {
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navAnchors.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === '#' + id);
-          });
-        }
-      });
-    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-    sections.forEach(sec => navObserver.observe(sec));
-  }
+  // NOTE: Removed the IntersectionObserver that automatically toggled active classes.
+  // Each page now sets the active link statically in its HTML, so the observer is no longer needed.
 
   /* ---------------- Reveal-on-scroll (also covers dynamically-added nodes) ---------------- */
   let revealObserver = null;

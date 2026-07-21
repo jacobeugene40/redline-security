@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redline Security — Services</title>
+    <meta name="description" content="Penetration testing, offensive security training, incident response, cloud reviews, and vCISO advisory — all led by certified practitioners." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2312181F'/%3E%3Cpath d='M4 18h6l2-9 4 18 3-13 2 4h7' stroke='%23C8391F' stroke-width='2' fill='none'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+        .page-wrap {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.45s cubic-bezier(.22, .85, .32, 1),
+                transform 0.45s cubic-bezier(.22, .85, .32, 1);
+        }
+        .page-wrap.is-exiting {
+            opacity: 0;
+            transform: translateY(-28px);
+            pointer-events: none;
+        }
+        .page-wrap.is-entering {
+            animation: fadeSlideIn 0.55s cubic-bezier(.22, .85, .32, 1) forwards;
+        }
+        @keyframes fadeSlideIn {
+            0% { opacity: 0; transform: translateY(32px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .page-wrap.is-exiting,
+            .page-wrap.is-entering {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    </style>
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('redline-theme');
+                var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body>
+
+    <!-- ===== SPRITE ===== -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <symbol id="icon-network" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="19" r="2.4"/><circle cx="19" cy="19" r="2.4"/><path d="M12 7.4V13M12 13 6.6 17M12 13l5.4 4"/></symbol>
+            <symbol id="icon-cloud" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.1 9.1 4.5 4.5 0 0 0 7 18Z"/></symbol>
+            <symbol id="icon-code" viewBox="0 0 24 24"><path d="m9 8-5 4 5 4M15 8l5 4-5 4"/></symbol>
+            <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="18" cy="9" r="2.6"/><path d="M15.5 14.2c2.6.3 4.5 2.4 4.5 5"/></symbol>
+            <symbol id="icon-flag" viewBox="0 0 24 24"><path d="M5 3v18M5 4h11l-2.5 3.5L16 11H5"/></symbol>
+            <symbol id="icon-doc" viewBox="0 0 24 24"><path d="M6 2h9l4 4v16H6Z"/><path d="M15 2v4h4M9 12h7M9 16h7M9 8h3"/></symbol>
+            <symbol id="icon-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="m15 8-2 5-5 2 2-5 5-2Z"/></symbol>
+            <symbol id="icon-building" viewBox="0 0 24 24"><path d="M4 21V5l8-3v19M12 21V9l8 3v9"/><path d="M8 9h.01M8 13h.01M8 17h.01M16 14h.01M16 18h.01"/></symbol>
+            <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 1 1-3.4-6.5"/><path d="M21 3v6h-6"/></symbol>
+            <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 2 3.1 6.7 7.4.8-5.5 5 1.6 7.3L12 18.2 5.4 21.8 7 14.5 1.5 9.5l7.4-.8Z"/></symbol>
+        </defs>
+    </svg>
+
+    <!-- ===== SCROLL PROGRESS ===== -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header id="siteHeader">
+        <div class="wrap nav">
+            <a class="logo" href="../">
+                <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+                    <rect x="1" y="1" width="30" height="30" rx="6" />
+                    <path class="logo-mark-line" d="M5 19h5l2-9 4 18 3-13 2 4h6" />
+                </svg>
+                <span class="logo-text">REDLINE<span class="logo-sub">SECURITY</span></span>
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="../" data-nav>Home</a>
+                <a href="../about/" data-nav>About</a>
+                <a href="./" data-nav class="active">Services</a>
+                <a href="../demo/" data-nav>Demo</a>
+                <a href="../reviews/" data-nav>Reviews</a>
+                <a href="../faq/" data-nav>FAQ</a>
+            </nav>
+            <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" aria-pressed="false" type="button">
+                <span class="theme-toggle-track">
+                    <span class="theme-toggle-thumb">
+                        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><g class="sun-rays"><line x1="12" y1="1.5" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.5" y2="6.5"/><line x1="17.5" y1="17.5" x2="19.6" y2="19.6"/><line x1="4.4" y1="19.6" x2="6.5" y2="17.5"/><line x1="17.5" y1="6.5" x2="19.6" y2="4.4"/></g></svg>
+                        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+                    </span>
+                </span>
+            </button>
+            <a class="nav-cta" href="../contact/"><span>Request Assessment</span></a>
+            <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== PAGE WRAP ===== -->
+    <main class="page-wrap is-entering" id="pageWrap">
+
+        <!-- ===== SERVICES HERO ===== -->
+        <section style="padding:120px 0 48px;">
+            <div class="wrap">
+                <div class="section-head reveal" style="max-width:100%;">
+                    <p class="eyebrow">Two Engagement Tracks</p>
+                    <h2>Test your systems, or train your team to.</h2>
+                    <p>Most clients start with an assessment. Many stay for the training — so the next fault line gets caught internally, before it reaches us.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TRACKS ===== -->
+        <section>
+            <div class="wrap">
+                <div class="tracks">
+                    <div class="track assess reveal">
+                        <span class="track-tag">Assessment Track</span>
+                        <h3>Penetration Testing</h3>
+                        <p>Manual, adversary-style testing against the systems your business actually depends on — not an automated scan with a logo on the cover page.</p>
+                        <ul class="track-list">
+                            <li><span>Network &amp; infrastructure pentest</span><span class="code">NET-01</span></li>
+                            <li><span>Web &amp; API application testing</span><span class="code">APP-02</span></li>
+                            <li><span>Cloud configuration review</span><span class="code">CLD-03</span></li>
+                            <li><span>Authorized social engineering</span><span class="code">SOC-04</span></li>
+                            <li><span>Red team simulation</span><span class="code">RED-05</span></li>
+                        </ul>
+                        <button class="service-more" type="button" data-modal-trigger data-service="pentest">
+                            <svg><use href="#icon-compass"/></svg>
+                            More info / Contact us
+                        </button>
+                    </div>
+                    <div class="track train reveal" data-reveal-delay="120">
+                        <span class="track-tag">Training Track</span>
+                        <h3>Offensive Security Training</h3>
+                        <p>Cohort-based and in-house training that turns your engineers into the first line of defense, taught by people who test in production.</p>
+                        <ul class="track-list">
+                            <li><span>Ethical hacking bootcamp</span><span class="code">TRN-01</span></li>
+                            <li><span>OSCP / CEH exam preparation</span><span class="code">TRN-02</span></li>
+                            <li><span>Corporate security awareness</span><span class="code">TRN-03</span></li>
+                            <li><span>Live-fire lab environments</span><span class="code">TRN-04</span></li>
+                            <li><span>Secure code review workshops</span><span class="code">TRN-05</span></li>
+                        </ul>
+                        <button class="service-more" type="button" data-modal-trigger data-service="training">
+                            <svg><use href="#icon-compass"/></svg>
+                            More info / Contact us
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== OTHER SERVICES ===== -->
+        <section class="section">
+            <div class="wrap other-services-wrap">
+                <div class="section-head reveal">
+                    <p class="eyebrow">Also Available</p>
+                    <h3 class="sub-head">A few more ways we help teams stay ahead.</h3>
+                </div>
+                <div class="other-services-grid">
+                    <button class="service-card reveal" type="button" data-modal-trigger data-service="incident">
+                        <svg class="service-card-icon"><use href="#icon-flag"/></svg>
+                        <h4>Incident Response</h4>
+                        <p>Rapid-response investigation and containment when something's already gone wrong.</p>
+                        <span class="service-card-link">More info <svg><use href="#icon-compass"/></svg></span>
+                    </button>
+                    <button class="service-card reveal" type="button" data-reveal-delay="60" data-modal-trigger data-service="compliance">
+                        <svg class="service-card-icon"><use href="#icon-doc"/></svg>
+                        <h4>Compliance &amp; Audit</h4>
+                        <p>Evidence-ready testing mapped to SOC 2, ISO 27001, and PCI-DSS requirements.</p>
+                        <span class="service-card-link">More info <svg><use href="#icon-compass"/></svg></span>
+                    </button>
+                    <button class="service-card reveal" type="button" data-reveal-delay="120" data-modal-trigger data-service="cloud">
+                        <svg class="service-card-icon"><use href="#icon-cloud"/></svg>
+                        <h4>Cloud Security Review</h4>
+                        <p>IAM, network, and workload configuration review across AWS, Azure, and GCP.</p>
+                        <span class="service-card-link">More info <svg><use href="#icon-compass"/></svg></span>
+                    </button>
+                    <button class="service-card reveal" type="button" data-reveal-delay="180" data-modal-trigger data-service="vciso">
+                        <svg class="service-card-icon"><use href="#icon-users"/></svg>
+                        <h4>vCISO Advisory</h4>
+                        <p>Fractional security leadership for teams that need direction, not another hire.</p>
+                        <span class="service-card-link">More info <svg><use href="#icon-compass"/></svg></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ROOM FOR HIRE ===== -->
+        <section class="section" style="padding-top:0;">
+            <div class="wrap">
+                <div class="room-hire reveal">
+                    <div class="room-hire-copy">
+                        <span class="track-tag room-tag">Space For Hire</span>
+                        <h3>Hire our on-site Cyber Range.</h3>
+                        <p>Our fitted training room and lab environment is available to hire for private workshops, CTFs, and vendor-led sessions — 12 seated stations, isolated network range, and a briefing screen, in a space built for exactly this.</p>
+                        <ul class="room-hire-list">
+                            <li>Up to 12 seats, isolated lab network</li>
+                            <li>Half-day, full-day, and multi-day rates</li>
+                            <li>Optional Redline facilitator on request</li>
+                        </ul>
+                        <button class="service-more" type="button" data-modal-trigger data-service="room">
+                            <svg><use href="#icon-building"/></svg>
+                            Check availability
+                        </button>
+                    </div>
+                    <svg class="room-hire-art" viewBox="0 0 280 220" aria-hidden="true">
+                        <rect x="1" y="1" width="278" height="218" rx="8"/>
+                        <rect x="24" y="26" width="232" height="70" rx="4" class="room-screen"/>
+                        <path d="M40 44h60M40 56h90M40 68h50" class="room-screen-lines"/>
+                        <g class="room-desks">
+                            <rect x="24" y="118" width="52" height="14" rx="2"/>
+                            <rect x="88" y="118" width="52" height="14" rx="2"/>
+                            <rect x="152" y="118" width="52" height="14" rx="2"/>
+                            <rect x="24" y="150" width="52" height="14" rx="2"/>
+                            <rect x="88" y="150" width="52" height="14" rx="2"/>
+                            <rect x="152" y="150" width="52" height="14" rx="2"/>
+                        </g>
+                        <text x="24" y="196" class="room-hire-label">CYBER RANGE — ROOM B</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WHY CHOOSE US ===== -->
+        <section class="section" style="padding-top:0;">
+            <div class="wrap why-choose-wrap">
+                <div class="section-head reveal">
+                    <p class="eyebrow">Why Teams Choose Redline</p>
+                    <h3 class="sub-head">Certified. Accountable. On the record.</h3>
+                    <p>Every lead tester on an engagement holds an industry-recognized certification, and every report is signed by name.</p>
+                </div>
+                <div class="cred-row">
+                    <div class="cred-card reveal">
+                        <span class="mono-tag">CERT</span>
+                        <h4>OSCP-certified leads</h4>
+                        <p>Every engagement is led by an Offensive Security Certified Professional.</p>
+                    </div>
+                    <div class="cred-card reveal" data-reveal-delay="80">
+                        <span class="mono-tag">CERT</span>
+                        <h4>CEH practitioners</h4>
+                        <p>Our trainers hold active Certified Ethical Hacker credentials, kept current annually.</p>
+                    </div>
+                    <div class="cred-card reveal" data-reveal-delay="160">
+                        <span class="mono-tag">SCOPE</span>
+                        <h4>Written authorization only</h4>
+                        <p>We test only within a signed scope of work. No exceptions, no gray areas.</p>
+                    </div>
+                    <div class="cred-card reveal" data-reveal-delay="240">
+                        <span class="mono-tag">NDA</span>
+                        <h4>Confidential by default</h4>
+                        <p>Every client and finding is covered under mutual NDA before work begins.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TESTIMONIAL STRIP ===== -->
+        <section style="padding:40px 0 80px;">
+            <div class="wrap">
+                <div class="testimonial-strip reveal">
+                    <svg class="t-strip-quote" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8c-2.2 0-4 1.8-4 4v4h6v-6H6a2 2 0 0 1 2-2V8Zm10 0c-2.2 0-4 1.8-4 4v4h6v-6h-3a2 2 0 0 1 2-2V8Z"/></svg>
+                    <p>“The report was the first one our engineers actually read cover to cover — every finding had a reproduction path.”</p>
+                    <span>— VP Engineering, Fintech, Series C</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="wrap">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+                            <rect x="1" y="1" width="30" height="30" rx="6" />
+                            <path class="logo-mark-line" d="M5 19h5l2-9 4 18 3-13 2 4h6" />
+                        </svg>
+                        REDLINE SECURITY
+                    </div>
+                    <p>Penetration testing and offensive security training for teams that need proof, not promises.</p>
+                    <div class="social-row">
+                        <a class="social-icon" href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.5 4.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 9.8h3V21H3ZM9.5 9.8H12v1.5h.05c.4-.75 1.5-1.6 3.1-1.6 3.3 0 3.9 2.1 3.9 4.9V21h-3v-4.9c0-1.2 0-2.7-1.6-2.7-1.6 0-1.9 1.3-1.9 2.6V21h-3Z"/></svg></a>
+                        <a class="social-icon" href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l7 9.2L4.4 20H6.6l5.6-5.9L16.7 20H20l-7.4-9.7L19.7 4h-2.2l-5.2 5.5L8 4Z"/></svg></a>
+                        <a class="social-icon" href="#" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.3-3.4-1.3-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.8 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7 1 .7 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a>
+                        <a class="social-icon" href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5a2.7 2.7 0 0 0-1.9 1.9A28 28 0 0 0 2 12a28 28 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-4.8ZM10 15V9l5.2 3Z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-cols">
+                    <div class="footer-col">
+                        <h5>Company</h5>
+                        <a href="../about/">About</a>
+                        <a href="./">Services</a>
+                        <a href="../demo/">Demo</a>
+                        <a href="../reviews/">Reviews</a>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Support</h5>
+                        <a href="../faq/">FAQ</a>
+                        <a href="../contact/">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Redline Security. All rights reserved.</span>
+                <span>Engagements conducted under signed authorization only.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <!-- ===== SHARED SCRIPTS ===== -->
+    <script src="../script.js"></script>
+
+    <!-- ===== PAGE-SPECIFIC INIT ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var wrap = document.getElementById('pageWrap');
+            if (wrap) wrap.classList.add('is-entering');
+        });
+    </script>
+</body>
+</html>
