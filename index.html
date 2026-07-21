@@ -1,2113 +1,663 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redline Security | Penetration Testing &amp; Offensive Security Training</title>
-    <meta name="description" content="Redline Security delivers CREST-aligned penetration testing and hands-on offensive security training for engineering teams that need proof, not promises." />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2312181F'/%3E%3Cpath d='M4 18h6l2-9 4 18 3-13 2 4h7' stroke='%23C8391F' stroke-width='2' fill='none'/%3E%3C/svg%3E" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    <style>
-        /* ======================================================================
-               REDLINE SECURITY — ENHANCED STYLESHEET
-               Light / Dark theme with smooth color-swap, modern animations,
-               glassmorphism, micro-interactions, and a premium feel.
-               ====================================================================== */
-
-        /* ---------- THEME TOKENS (light default) ---------- */
-        :root {
-            /* --- Light --- */
-            --bg-body: #EFF1EC;
-            --bg-raised: #FFFFFF;
-            --bg-deep: #0D1319;
-            --bg-card: #FFFFFF;
-            --bg-input: #F4F5F2;
-            --bg-header: rgba(239, 241, 236, 0.78);
-            --text-primary: #12181F;
-            --text-soft: #3C4650;
-            --text-muted: #6B757D;
-            --text-inverse: #F2F4F5;
-            --border-light: #C7CEC9;
-            --border-deep: #26313B;
-            --shadow-sm: 0 1px 3px rgba(13, 19, 25, 0.06);
-            --shadow-md: 0 8px 28px -8px rgba(13, 19, 25, 0.14);
-            --shadow-lg: 0 24px 48px -16px rgba(13, 19, 25, 0.22);
-            --shadow-glow: 0 0 40px -8px rgba(200, 57, 31, 0.10);
-            --glow-red: rgba(200, 57, 31, 0.08);
-            --glow-amber: rgba(216, 154, 62, 0.06);
-            --code-bg: #F0F2EE;
-            --track-bg: #FBFBF9;
-            --creds-text: #D8DEE2;
-            --creds-muted: #93A0AA;
-            --faq-border: #C7CEC9;
-            --footer-bg: #0D1319;
-            --footer-text: #8C99A3;
-            --footer-link: #AEB8C0;
-
-            /* Theme transition */
-            --theme-transition: 0.45s cubic-bezier(0.22, 0.85, 0.32, 1);
-        }
-
-        /* ---------- DARK THEME ---------- */
-        [data-theme="dark"] {
-            --bg-body: #0A0F14;
-            --bg-raised: #141C24;
-            --bg-deep: #060A0E;
-            --bg-card: #18212A;
-            --bg-input: #1C2631;
-            --bg-header: rgba(10, 15, 20, 0.85);
-            --text-primary: #EDF0F2;
-            --text-soft: #B0BBC4;
-            --text-muted: #7C8A96;
-            --text-inverse: #0A0F14;
-            --border-light: #26313B;
-            --border-deep: #2F3D49;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 8px 28px -8px rgba(0, 0, 0, 0.5);
-            --shadow-lg: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
-            --shadow-glow: 0 0 40px -8px rgba(200, 57, 31, 0.18);
-            --glow-red: rgba(200, 57, 31, 0.12);
-            --glow-amber: rgba(216, 154, 62, 0.08);
-            --code-bg: #1C2631;
-            --track-bg: #1A232D;
-            --creds-text: #D8DEE2;
-            --creds-muted: #93A0AA;
-            --faq-border: #26313B;
-            --footer-bg: #060A0E;
-            --footer-text: #7C8A96;
-            --footer-link: #AEB8C0;
-
-            /* Override specific elements */
-            .hero-glow {
-                background: radial-gradient(circle at center, rgba(200, 57, 31, 0.18), rgba(216, 154, 62, 0.08) 45%, transparent 70%) !important;
-            }
-            .track {
-                background: var(--bg-card) !important;
-            }
-            .track:hover {
-                background: var(--track-bg) !important;
-            }
-            .t-card {
-                background: var(--bg-card) !important;
-                border-color: var(--border-light) !important;
-            }
-            .t-card:hover {
-                box-shadow: var(--shadow-lg) !important;
-            }
-            .method-step:hover {
-                background: rgba(255, 255, 255, 0.03) !important;
-            }
-            .cred-card:hover {
-                background: rgba(216, 154, 62, 0.06) !important;
-            }
-            .faq-list details {
-                border-color: var(--border-light) !important;
-            }
-            .nav-links.open {
-                background: var(--bg-body) !important;
-            }
-            .btn-line {
-                border-color: var(--text-soft) !important;
-                color: var(--text-primary) !important;
-            }
-            .btn-line::before {
-                background: var(--text-primary) !important;
-            }
-            .btn-line:hover {
-                color: var(--bg-body) !important;
-                border-color: var(--text-primary) !important;
-            }
-            .btn-solid {
-                background: var(--text-primary) !important;
-                color: var(--bg-body) !important;
-            }
-            .btn-solid::before {
-                background: var(--redline) !important;
-            }
-            .burger span {
-                background: var(--text-primary) !important;
-            }
-            .fault-panel {
-                background: #0F171F !important;
-            }
-            .scroll-progress {
-                background: linear-gradient(90deg, var(--redline), var(--amber)) !important;
-            }
-        }
-
-        /* ---------- GLOBAL RESET & BASE ---------- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            background: var(--bg-body);
-            color: var(--text-primary);
-            font-family: 'IBM Plex Sans', sans-serif;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-            transition: background var(--theme-transition), color var(--theme-transition);
-        }
-        img {
-            max-width: 100%;
-            display: block;
-        }
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-        ul {
-            list-style: none;
-        }
-        section {
-            position: relative;
-        }
-        .wrap {
-            max-width: 1180px;
-            margin: 0 auto;
-            padding: 0 32px;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.001ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.001ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        a:focus-visible,
-        button:focus-visible,
-        input:focus-visible,
-        textarea:focus-visible,
-        select:focus-visible,
-        summary:focus-visible {
-            outline: 2px solid var(--redline);
-            outline-offset: 3px;
-            border-radius: 2px;
-        }
-
-        /* ---------- UTILITY ---------- */
-        .eyebrow {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12.5px;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--redline);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .eyebrow::before {
-            content: '';
-            width: 22px;
-            height: 1px;
-            background: var(--redline);
-            display: inline-block;
-            transition: background var(--theme-transition);
-        }
-
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            transition: color var(--theme-transition);
-        }
-
-        /* ---------- SCROLL PROGRESS ---------- */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--redline), var(--amber));
-            width: 0%;
-            z-index: 200;
-            transition: width 0.1s linear, background var(--theme-transition);
-        }
-
-        /* ---------- REVEAL ANIMATION ---------- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.8s cubic-bezier(0.22, 0.85, 0.32, 1), transform 0.8s cubic-bezier(0.22, 0.85, 0.32, 1);
-        }
-        .reveal.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .reveal-stagger>* {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.7s cubic-bezier(0.22, 0.85, 0.32, 1), transform 0.7s cubic-bezier(0.22, 0.85, 0.32, 1);
-        }
-        .reveal-stagger.is-visible>*:nth-child(1) {
-            transition-delay: 0.04s;
-        }
-        .reveal-stagger.is-visible>*:nth-child(2) {
-            transition-delay: 0.12s;
-        }
-        .reveal-stagger.is-visible>*:nth-child(3) {
-            transition-delay: 0.20s;
-        }
-        .reveal-stagger.is-visible>*:nth-child(4) {
-            transition-delay: 0.28s;
-        }
-        .reveal-stagger.is-visible>* {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ---------- HEADER ---------- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            background: var(--bg-header);
-            backdrop-filter: blur(16px) saturate(160%);
-            -webkit-backdrop-filter: blur(16px) saturate(160%);
-            border-bottom: 1px solid var(--border-light);
-            transition: background var(--theme-transition), box-shadow 0.3s ease, border-color var(--theme-transition);
-        }
-        header.scrolled {
-            box-shadow: var(--shadow-sm);
-        }
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 72px;
-        }
-        .logo {
-            font-family: 'IBM Plex Mono', monospace;
-            font-weight: 600;
-            font-size: 17px;
-            letter-spacing: 0.02em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-primary);
-            transition: color var(--theme-transition);
-        }
-        .logo .dash {
-            width: 14px;
-            height: 2px;
-            background: var(--redline);
-            display: inline-block;
-            transition: background var(--theme-transition);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 36px;
-            font-size: 14.5px;
-            font-weight: 500;
-            align-items: center;
-            transition: background var(--theme-transition);
-        }
-        .nav-links a {
-            position: relative;
-            padding: 4px 0;
-            color: var(--text-soft);
-            transition: color 0.2s ease;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 1.5px;
-            background: var(--redline);
-            transition: width 0.3s cubic-bezier(0.22, 0.85, 0.32, 1);
-        }
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--text-primary);
-        }
-
-        /* ---- Theme Toggle ---- */
-        .theme-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 6px 8px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-soft);
-            font-size: 18px;
-            transition: color 0.2s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            width: 40px;
-            height: 40px;
-        }
-        .theme-toggle:hover {
-            color: var(--redline);
-            transform: rotate(8deg) scale(1.05);
-        }
-        .theme-toggle .icon-sun,
-        .theme-toggle .icon-moon {
-            position: absolute;
-            transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .theme-toggle .icon-sun {
-            opacity: 0;
-            transform: scale(0.5) rotate(-90deg);
-        }
-        .theme-toggle .icon-moon {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
-        }
-        [data-theme="dark"] .theme-toggle .icon-sun {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
-        }
-        [data-theme="dark"] .theme-toggle .icon-moon {
-            opacity: 0;
-            transform: scale(0.5) rotate(90deg);
-        }
-
-        .nav-cta-wrap {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .nav-cta {
-            position: relative;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13.5px;
-            font-weight: 500;
-            background: var(--text-primary);
-            color: var(--bg-body);
-            padding: 11px 20px;
-            border-radius: 2px;
-            letter-spacing: 0.02em;
-            overflow: hidden;
-            transition: transform 0.2s cubic-bezier(0.22, 0.85, 0.32, 1), box-shadow 0.2s cubic-bezier(0.22, 0.85, 0.32, 1), background var(--theme-transition), color var(--theme-transition);
-            display: inline-block;
-        }
-        .nav-cta::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--redline);
-            transform: translateX(-101%);
-            transition: transform 0.35s cubic-bezier(0.22, 0.85, 0.32, 1);
-            z-index: 0;
-        }
-        .nav-cta span {
-            position: relative;
-            z-index: 1;
-        }
-        .nav-cta:hover::before {
-            transform: translateX(0);
-        }
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .burger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            z-index: 5;
-        }
-        .burger span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--text-primary);
-            margin: 5px 0;
-            transition: transform 0.25s ease, opacity 0.25s ease, background var(--theme-transition);
-        }
-        .burger[aria-expanded='true'] span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-        .burger[aria-expanded='true'] span:nth-child(2) {
-            opacity: 0;
-        }
-        .burger[aria-expanded='true'] span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-
-        /* ---------- HERO ---------- */
-        .hero {
-            padding: 168px 0 88px;
-            background: var(--bg-body);
-            overflow: hidden;
-            position: relative;
-            transition: background var(--theme-transition);
-        }
-        .hero-glow {
-            position: absolute;
-            top: -180px;
-            right: -220px;
-            width: 640px;
-            height: 640px;
-            background: radial-gradient(circle at center, var(--glow-red), var(--glow-amber) 45%, transparent 70%);
-            filter: blur(10px);
-            pointer-events: none;
-            transition: background var(--theme-transition);
-        }
-        .hero-glow-2 {
-            position: absolute;
-            bottom: -120px;
-            left: -180px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle at center, rgba(216, 154, 62, 0.05), transparent 60%);
-            filter: blur(14px);
-            pointer-events: none;
-            transition: background var(--theme-transition);
-        }
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.05fr 0.95fr;
-            gap: 56px;
-            align-items: center;
-            position: relative;
-        }
-        .hero h1 {
-            font-size: clamp(38px, 4.6vw, 60px);
-            line-height: 1.05;
-            margin: 18px 0 22px;
-            color: var(--text-primary);
-            transition: color var(--theme-transition);
-        }
-        .highlight {
-            position: relative;
-            color: var(--redline);
-            display: inline-block;
-        }
-        .underline-swipe {
-            position: absolute;
-            left: 0;
-            bottom: -6px;
-            width: 100%;
-            height: 10px;
-            overflow: visible;
-        }
-        .underline-swipe path {
-            stroke-dasharray: 260;
-            stroke-dashoffset: 260;
-            animation: swipe 0.9s cubic-bezier(0.22, 0.85, 0.32, 1) forwards 0.5s;
-        }
-        @keyframes swipe {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        .hero p.lede {
-            font-size: 17px;
-            color: var(--text-soft);
-            max-width: 46ch;
-            margin-bottom: 34px;
-            transition: color var(--theme-transition);
-        }
-        .hero-ctas {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-bottom: 44px;
-        }
-        .btn {
-            position: relative;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13.5px;
-            font-weight: 500;
-            padding: 14px 24px;
-            border-radius: 2px;
-            letter-spacing: 0.02em;
-            display: inline-block;
-            border: 1px solid var(--text-primary);
-            overflow: hidden;
-            transition: transform 0.2s cubic-bezier(0.22, 0.85, 0.32, 1), box-shadow 0.2s cubic-bezier(0.22, 0.85, 0.32, 1), color var(--theme-transition), border-color var(--theme-transition), background var(--theme-transition);
-        }
-        .btn span {
-            position: relative;
-            z-index: 1;
-        }
-        .btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            transform: translateY(101%);
-            transition: transform 0.35s cubic-bezier(0.22, 0.85, 0.32, 1);
-            z-index: 0;
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-        }
-        .btn-solid {
-            background: var(--text-primary);
-            color: var(--bg-body);
-            border-color: var(--text-primary);
-        }
-        .btn-solid::before {
-            background: var(--redline);
-        }
-        .btn-solid:hover::before {
-            transform: translateY(0);
-        }
-        .btn-line {
-            background: transparent;
-            color: var(--text-primary);
-            border-color: var(--text-soft);
-        }
-        .btn-line::before {
-            background: var(--text-primary);
-        }
-        .btn-line:hover {
-            color: var(--bg-body);
-            border-color: var(--text-primary);
-        }
-        .btn-line:hover::before {
-            transform: translateY(0);
-        }
-
-        .hero-trust {
-            font-size: 12.5px;
-            color: var(--text-soft);
-            transition: color var(--theme-transition);
-        }
-        .hero-trust span {
-            display: block;
-            margin-bottom: 10px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            transition: color var(--theme-transition);
-        }
-        .trust-marks {
-            display: flex;
-            gap: 26px;
-            flex-wrap: wrap;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12.5px;
-            letter-spacing: 0.04em;
-            color: var(--text-muted);
-            transition: color var(--theme-transition);
-        }
-        .trust-marks span {
-            transition: color 0.3s ease;
-        }
-        .trust-marks span:hover {
-            color: var(--redline);
-        }
-
-        /* fault panel */
-        .fault-panel {
-            background: var(--bg-deep);
-            border-radius: 6px;
-            padding: 26px 22px 20px;
-            position: relative;
-            box-shadow: var(--shadow-lg);
-            transition: transform 0.4s cubic-bezier(0.22, 0.85, 0.32, 1), box-shadow var(--theme-transition), background var(--theme-transition);
-        }
-        .fault-panel:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-        }
-        .fault-panel-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            font-family: 'IBM Plex Mono', monospace;
-            color: #8A97A3;
-            font-size: 11.5px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-        }
-        .fault-panel-head .live {
-            color: var(--redline);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .pulse-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--redline);
-            display: inline-block;
-            animation: pulse 1.6s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(200, 57, 31, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 0 5px rgba(200, 57, 31, 0);
-            }
-        }
-        .fault-svg-wrap {
-            position: relative;
-        }
-        .fault-line-draw {
-            stroke: url(#lineGlow);
-            stroke-width: 2;
-            fill: none;
-            stroke-dasharray: 900;
-            stroke-dashoffset: 900;
-            animation: draw 3.2s cubic-bezier(0.22, 0.85, 0.32, 1) forwards 0.3s;
-        }
-        @keyframes draw {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-        .grid-line {
-            stroke: var(--border-deep);
-            stroke-width: 1;
-            transition: stroke var(--theme-transition);
-        }
-        .tag {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            fill: #C6CDD3;
-            opacity: 0;
-            animation: pop 0.4s ease forwards;
-        }
-        .tag-crit {
-            fill: var(--redline);
-        }
-        .marker {
-            fill: var(--bg-deep);
-            stroke: var(--redline);
-            stroke-width: 1.5;
-            opacity: 0;
-            animation: pop 0.4s ease forwards;
-            transition: fill var(--theme-transition);
-        }
-        @keyframes pop {
-            to {
-                opacity: 1;
-            }
-        }
-        .fault-panel-foot {
-            display: flex;
-            justify-content: space-between;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            color: #5F7386;
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border-deep);
-            transition: border-color var(--theme-transition);
-        }
-
-        /* ---------- STATS STRIP ---------- */
-        .stats {
-            background: var(--bg-deep);
-            color: var(--text-inverse);
-            padding: 44px 0;
-            border-top: 1px solid var(--border-deep);
-            border-bottom: 1px solid var(--border-deep);
-            transition: background var(--theme-transition), border-color var(--theme-transition);
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-        .stat-num {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: clamp(26px, 3.2vw, 34px);
-            color: var(--amber);
-            font-weight: 600;
-            font-variant-numeric: tabular-nums;
-            transition: color var(--theme-transition);
-        }
-        .stat-label {
-            font-size: 12.5px;
-            color: #9AA5AE;
-            margin-top: 4px;
-            letter-spacing: 0.02em;
-            transition: color var(--theme-transition);
-        }
-
-        /* ---------- SECTION HEADERS ---------- */
-        .section {
-            padding: 96px 0;
-            transition: background var(--theme-transition);
-        }
-        .section-head {
-            max-width: 640px;
-            margin-bottom: 56px;
-        }
-        .section-head h2 {
-            font-size: clamp(28px, 3.4vw, 38px);
-            margin-top: 14px;
-            color: var(--text-primary);
-            transition: color var(--theme-transition);
-        }
-        .section-head p {
-            color: var(--text-soft);
-            margin-top: 14px;
-            font-size: 15.5px;
-            transition: color var(--theme-transition);
-        }
-
-        /* ---------- SERVICES / TRACKS ---------- */
-        .tracks {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            background: var(--border-light);
-            border: 1px solid var(--border-light);
-            border-radius: 6px;
-            overflow: hidden;
-            transition: background var(--theme-transition), border-color var(--theme-transition);
-        }
-        .track {
-            background: var(--bg-raised);
-            padding: 40px 36px;
-            transition: background 0.3s ease, transform 0.3s cubic-bezier(0.22, 0.85, 0.32, 1);
-        }
-        .track:hover {
-            background: var(--track-bg);
-            transform: translateY(-2px);
-        }
-        .track-tag {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11.5px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 5px 10px;
-            display: inline-block;
-            border-radius: 2px;
-            margin-bottom: 20px;
-        }
-        .track.assess .track-tag {
-            background: var(--redline-soft);
-            color: var(--redline);
-        }
-        .track.train .track-tag {
-            background: #F1E6D2;
-            color: #9C6B1F;
-        }
-        .track h3 {
-            font-size: 23px;
-            margin-bottom: 14px;
-            color: var(--text-primary);
-            transition: color var(--theme-transition);
-        }
-        .track>p {
-            color: var(--text-soft);
-            font-size: 15px;
-            margin-bottom: 26px;
-            transition: color var(--theme-transition);
-        }
-        .track-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-        .track-list li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 0;
-            border-top: 1px solid var(--border-light);
-            font-size: 14.5px;
-            color: var(--text-primary);
-            transition: padding-left 0.2s ease, border-color var(--theme-transition), color var(--theme-transition);
-        }
-        .track-list li:hover {
-            padding-left: 6px;
-        }
-        .track-list li:first-child {
-            border-top: none;
-        }
-        .track-list .code {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11.5px;
-            color: var(--text-muted);
-            transition: color var(--theme-transition);
-        }
-
-        /* ---------- METHODOLOGY ---------- */
-        .method-strip {
-            background: var(--bg-body);
-            transition: background var(--theme-transition);
-        }
-        .method-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-            border-top: 1px solid var(--border-light);
-            transition: border-color var(--theme-transition);
-        }
-        .method-step {
-            padding: 32px 28px 0;
-            border-right: 1px solid var(--border-light);
-            position: relative;
-            transition: background 0.3s ease, border-color var(--theme-transition);
-        }
-        .method-step:hover {
-            background: rgba(255, 255, 255, 0.4);
-        }
-        [data-theme="dark"] .method-step:hover {
-            background: rgba(255, 255, 255, 0.03);
-        }
-        .method-step:last-child {
-            border-right: none;
-        }
-        .method-num {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13px;
-            color: var(--redline);
-            margin-bottom: 18px;
-            transition: color var(--theme-transition);
-        }
-        .method-step h4 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-            transition: color var(--theme-transition);
-        }
-        .method-step p {
-            font-size: 14px;
-            color: var(--text-soft);
-            padding-bottom: 32px;
-            transition: color var(--theme-transition);
-        }
-
-        /* ---------- CREDENTIALS ---------- */
-        .creds {
-            background: var(--bg-deep);
-            color: var(--creds-text);
-            transition: background var(--theme-transition), color var(--theme-transition);
-        }
-        .creds .section-head p {
-            color: var(--creds-muted);
-        }
-        .creds .section-head .eyebrow {
-            color: var(--amber);
-        }
-        .creds .section-head .eyebrow::before {
-            background: var(--amber);
-        }
-        .cred-row {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-        .cred-card {
-            border: 1px solid var(--border-deep);
-            padding: 26px 22px;
-            border-radius: 6px;
-            transition: transform 0.3s cubic-bezier(0.22, 0.85, 0.32, 1), border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-            background: transparent;
-        }
-        .cred-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--amber);
-            background: rgba(216, 154, 62, 0.04);
-            box-shadow: var(--shadow-glow);
-        }
-        .cred-card .mono-tag {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
-            color: var(--amber);
-            letter-spacing: 0.06em;
-        }
-        .cred-card h4 {
-            color: var(--text-inverse);
-            font-size: 16.5px;
-            margin: 10px 0 8px;
-            transition: color var(--theme-transition);
-        }
-        .cred-card p {
-            font-size: 13.5px;
-            color: var(--creds-muted);
-            transition: color var(--theme-transition);
-        }
-
-        /* ---------- TESTIMONIALS ---------- */
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-        .t-card {
-            background: var(--bg-raised);
-            border: 1px solid var(--border-light);
-            border-radius: 6px;
-            padding: 28px 26px;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s cubic-bezier(0.22, 0.85, 0.32, 1), box-shadow 0.3s ease, background var(--theme-transition), border-color var(--theme-transition);
-        }
-        .t-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-md);
-        }
-        .t-stamp {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10.5px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--ok);
-            border: 1px solid var(--ok);
-            align-self: flex-start;
-            padding: 3px 8px;
-            border-radius: 2px;
-            margin-bottom: 18px;
-            transition: color var(--theme-transition), border-color var(--theme-transition);
-        }
-        .t-card p.quote {
-            font-size: 15px;
-            color: var(--text-primary);
-            margin-bottom: 22px;
-            flex: 1;
-            transition: color var(--theme-transition);
-        }
-        .t-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            border-top: 1px solid var(--border-light);
-            padding-top: 14px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
-            color: var(--text-soft);
-            transition: border-color var(--theme-transition), color var(--theme-transition);
-        }
-
-        /* ---------- FAQ ---------- */
-        .faq-list {
-            max-width: 760px;
-        }
-        .faq-list details {
-            border-bottom: 1px solid var(--faq-border);
-            padding: 22px 0;
-            transition: border-color var(--theme-transition);
-        }
-        .faq-list details summary {
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 16.5px;
-            font-weight: 500;
-            color: var(--text-primary);
-            transition: color 0.2s ease;
-        }
-        .faq-list details summary:hover {
-            color: var(--redline);
-        }
-        .faq-list details summary::-webkit-details-marker {
-            display: none;
-        }
-        .plus {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 20px;
-            color: var(--redline);
-            transition: transform 0.25s cubic-bezier(0.22, 0.85, 0.32, 1);
-            flex-shrink: 0;
-            margin-left: 20px;
-        }
-        .faq-list details[open] .plus {
-            transform: rotate(45deg);
-        }
-        .faq-list details p {
-            color: var(--text-soft);
-            font-size: 14.5px;
-            margin-top: 14px;
-            max-width: 60ch;
-            transition: color var(--theme-transition);
-        }
-
-        /* ---------- CTA / CONTACT ---------- */
-        .contact {
-            background: var(--bg-deep);
-            color: var(--text-inverse);
-            transition: background var(--theme-transition), color var(--theme-transition);
-        }
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 0.9fr 1.1fr;
-            gap: 64px;
-        }
-        .contact-left .eyebrow {
-            color: var(--amber);
-        }
-        .contact-left .eyebrow::before {
-            background: var(--amber);
-        }
-        .contact-left h2 {
-            font-size: clamp(28px, 3.2vw, 36px);
-            margin: 14px 0 18px;
-            color: var(--text-inverse);
-        }
-        .contact-left p {
-            color: #9AA5AE;
-            font-size: 15px;
-            max-width: 42ch;
-            margin-bottom: 28px;
-            transition: color var(--theme-transition);
-        }
-        .contact-detail {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13.5px;
-            color: #C6CDD3;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: color var(--theme-transition);
-        }
-        .contact-detail .ico {
-            color: var(--amber);
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-        .field {
-            position: relative;
-        }
-        label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11.5px;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: #8C99A3;
-            display: block;
-            margin-bottom: 7px;
-            transition: color var(--theme-transition);
-        }
-        input,
-        textarea,
-        select {
-            width: 100%;
-            background: var(--bg-input);
-            border: 1px solid var(--border-deep);
-            color: var(--text-primary);
-            padding: 12px 14px;
-            border-radius: 4px;
-            font-family: 'IBM Plex Sans', sans-serif;
-            font-size: 14.5px;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease, background var(--theme-transition), color var(--theme-transition);
-        }
-        input:focus,
-        textarea:focus,
-        select:focus {
-            border-color: var(--redline);
-            box-shadow: 0 0 0 3px rgba(200, 57, 31, 0.15);
-            outline: none;
-        }
-        input::placeholder,
-        textarea::placeholder {
-            color: var(--text-muted);
-            transition: color var(--theme-transition);
-        }
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-        .field-error {
-            display: none;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11.5px;
-            color: var(--redline);
-            margin-top: 6px;
-        }
-        .field.invalid input,
-        .field.invalid textarea {
-            border-color: var(--redline);
-        }
-        .field.invalid .field-error {
-            display: block;
-        }
-
-        .submit-btn {
-            position: relative;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13.5px;
-            font-weight: 500;
-            background: var(--redline);
-            color: #fff;
-            border: none;
-            padding: 15px 24px;
-            border-radius: 4px;
-            cursor: pointer;
-            align-self: flex-start;
-            margin-top: 6px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: background 0.2s ease, transform 0.2s cubic-bezier(0.22, 0.85, 0.32, 1), box-shadow 0.2s ease;
-        }
-        .submit-btn:hover {
-            background: #A62E17;
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-        }
-        .submit-btn:disabled {
-            opacity: 0.75;
-            cursor: default;
-            transform: none;
-        }
-        .btn-spinner {
-            width: 14px;
-            height: 14px;
-            border: 2px solid rgba(255, 255, 255, 0.35);
-            border-top-color: #fff;
-            border-radius: 50%;
-            display: none;
-            animation: spin 0.7s linear infinite;
-        }
-        .submit-btn.loading .btn-spinner {
-            display: inline-block;
-        }
-        .submit-btn.loading .btn-text {
-            opacity: 0.7;
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .form-note {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 4px;
-            transition: color var(--theme-transition);
-        }
-        .form-success {
-            display: none;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13.5px;
-            color: #7CBF98;
-            border: 1px solid #2F4A3B;
-            background: #132018;
-            padding: 14px 16px;
-            border-radius: 4px;
-            margin-top: 12px;
-        }
-        [data-theme="dark"] .form-success {
-            background: #0F1F14;
-            border-color: #1F3D2A;
-        }
-        .form-success.show {
-            display: block;
-            animation: fadeUp 0.4s cubic-bezier(0.22, 0.85, 0.32, 1);
-        }
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ---------- FOOTER ---------- */
-        footer {
-            background: var(--footer-bg);
-            color: var(--footer-text);
-            padding: 56px 0 28px;
-            transition: background var(--theme-transition), color var(--theme-transition);
-        }
-        .footer-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding-bottom: 40px;
-            border-bottom: 1px solid var(--border-deep);
-            flex-wrap: wrap;
-            gap: 32px;
-            transition: border-color var(--theme-transition);
-        }
-        .footer-logo {
-            font-family: 'IBM Plex Mono', monospace;
-            color: var(--text-inverse);
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            transition: color var(--theme-transition);
-        }
-        .footer-top p {
-            max-width: 32ch;
-            font-size: 13.5px;
-            transition: color var(--theme-transition);
-        }
-        .footer-cols {
-            display: flex;
-            gap: 64px;
-        }
-        .footer-col h5 {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-muted);
-            margin-bottom: 14px;
-            transition: color var(--theme-transition);
-        }
-        .footer-col a {
-            display: block;
-            font-size: 13.5px;
-            padding: 6px 0;
-            color: var(--footer-link);
-            transition: color 0.2s ease;
-        }
-        .footer-col a:hover {
-            color: var(--amber);
-        }
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            padding-top: 24px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
-            flex-wrap: wrap;
-            gap: 12px;
-            transition: color var(--theme-transition);
-        }
-
-        /* ---------- DIVIDER MOTIF ---------- */
-        .divider {
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-body);
-            transition: background var(--theme-transition);
-        }
-        .divider svg path {
-            stroke: var(--border-light);
-            transition: stroke var(--theme-transition);
-        }
-
-        /* ---------- BACK TO TOP ---------- */
-        .back-to-top {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--text-primary);
-            color: var(--bg-body);
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease, color var(--theme-transition), background var(--theme-transition);
-            z-index: 90;
-            box-shadow: var(--shadow-md);
-        }
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .back-to-top:hover {
-            background: var(--redline);
-            color: #fff;
-        }
-
-        /* ---------- RESPONSIVE ---------- */
-        @media (max-width: 1024px) {
-            .cred-row {
-                grid-template-columns: 1fr 1fr;
-                row-gap: 20px;
-            }
-        }
-        @media (max-width: 900px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                row-gap: 28px;
-            }
-            .tracks {
-                grid-template-columns: 1fr;
-            }
-            .method-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .method-step {
-                border-bottom: 1px solid var(--border-light);
-                border-right: none;
-            }
-            .method-step:nth-child(2) {
-                border-right: none;
-            }
-            .testimonial-grid {
-                grid-template-columns: 1fr;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            .footer-top {
-                flex-direction: column;
-            }
-            .footer-cols {
-                gap: 32px;
-            }
-            .cred-row {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        @media (max-width: 700px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 72px;
-                left: 0;
-                right: 0;
-                background: var(--bg-body);
-                flex-direction: column;
-                padding: 12px 32px 24px;
-                border-bottom: 1px solid var(--border-light);
-                gap: 4px;
-                box-shadow: var(--shadow-md);
-                transition: background var(--theme-transition), border-color var(--theme-transition);
-            }
-            .nav-links.open {
-                display: flex;
-            }
-            .nav-links a {
-                padding: 12px 0;
-            }
-            .nav-cta {
-                display: none;
-            }
-            .burger {
-                display: block;
-            }
-            .back-to-top {
-                width: 40px;
-                height: 40px;
-                bottom: 20px;
-                right: 20px;
-            }
-            .hero {
-                padding: 140px 0 60px;
-            }
-            .section {
-                padding: 60px 0;
-            }
-            .method-grid {
-                grid-template-columns: 1fr;
-            }
-            .method-step {
-                border-bottom: 1px solid var(--border-light);
-                border-right: none;
-            }
-            .cred-row {
-                grid-template-columns: 1fr;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .hero-trust .trust-marks {
-                gap: 14px;
-                font-size: 11px;
-            }
-            .fault-panel {
-                padding: 18px 14px 16px;
-            }
-            .track {
-                padding: 28px 20px;
-            }
-            .theme-toggle {
-                width: 34px;
-                height: 34px;
-                font-size: 16px;
-            }
-        }
-        @media (max-width: 420px) {
-            .wrap {
-                padding: 0 16px;
-            }
-            .hero h1 {
-                font-size: 30px;
-            }
-            .hero-ctas .btn {
-                width: 100%;
-                text-align: center;
-                justify-content: center;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 16px;
-            }
-            .stat-num {
-                font-size: 22px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redline Security | Penetration Testing &amp; Offensive Security Training</title>
+<meta name="description" content="Redline Security delivers CREST-aligned penetration testing and hands-on offensive security training for engineering teams that need proof, not promises.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2312181F'/%3E%3Cpath d='M4 18h6l2-9 4 18 3-13 2 4h7' stroke='%23C8391F' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>
+  // Set theme before paint to avoid flash of wrong theme
+  (function(){
+    try{
+      var saved = localStorage.getItem('redline-theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    }catch(e){}
+  })();
+</script>
 </head>
 <body>
 
-    <!-- Scroll progress -->
-    <div class="scroll-progress" id="scrollProgress"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="icon-network" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="19" r="2.4"/><circle cx="19" cy="19" r="2.4"/><path d="M12 7.4V13M12 13 6.6 17M12 13l5.4 4"/></symbol>
+    <symbol id="icon-cloud" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.1 9.1 4.5 4.5 0 0 0 7 18Z"/></symbol>
+    <symbol id="icon-code" viewBox="0 0 24 24"><path d="m9 8-5 4 5 4M15 8l5 4-5 4"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="18" cy="9" r="2.6"/><path d="M15.5 14.2c2.6.3 4.5 2.4 4.5 5"/></symbol>
+    <symbol id="icon-flag" viewBox="0 0 24 24"><path d="M5 3v18M5 4h11l-2.5 3.5L16 11H5"/></symbol>
+    <symbol id="icon-doc" viewBox="0 0 24 24"><path d="M6 2h9l4 4v16H6Z"/><path d="M15 2v4h4M9 12h7M9 16h7M9 8h3"/></symbol>
+    <symbol id="icon-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="m15 8-2 5-5 2 2-5 5-2Z"/></symbol>
+    <symbol id="icon-building" viewBox="0 0 24 24"><path d="M4 21V5l8-3v19M12 21V9l8 3v9"/><path d="M8 9h.01M8 13h.01M8 17h.01M16 14h.01M16 18h.01"/></symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 1 1-3.4-6.5"/><path d="M21 3v6h-6"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7Z"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 2 3.1 6.7 7.4.8-5.5 5 1.6 7.3L12 18.2 5.4 21.8 7 14.5 1.5 9.5l7.4-.8Z"/></symbol>
+  </defs>
+</svg>
 
-    <!-- Header -->
-    <header id="siteHeader">
-        <div class="wrap nav">
-            <a class="logo" href="#top"><span class="dash"></span>REDLINE SECURITY</a>
-            <nav class="nav-links" id="navLinks">
-                <a href="#services" data-nav>Services</a>
-                <a href="#method" data-nav>Methodology</a>
-                <a href="#credentials" data-nav>Credentials</a>
-                <a href="#reviews" data-nav>Reviews</a>
-                <a href="#faq" data-nav>FAQ</a>
-            </nav>
-            <div class="nav-cta-wrap">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <span class="icon-sun" aria-hidden="true">☀</span>
-                    <span class="icon-moon" aria-hidden="true">☽</span>
-                </button>
-                <a class="nav-cta" href="#contact"><span>Request Assessment</span></a>
-            </div>
-            <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header id="siteHeader">
+  <div class="wrap nav">
+    <a class="logo" href="#top">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="1" y="1" width="30" height="30" rx="6"/>
+        <path class="logo-mark-line" d="M5 19h5l2-9 4 18 3-13 2 4h6"/>
+      </svg>
+      <span class="logo-text">REDLINE<span class="logo-sub">SECURITY</span></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#top" data-nav>Home</a>
+      <a href="#about" data-nav>About</a>
+      <a href="#services" data-nav>Services</a>
+      <a href="#demo" data-nav>Demo</a>
+      <a href="#reviews" data-nav>Reviews</a>
+      <a href="#faq" data-nav>FAQ</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" aria-pressed="false" type="button">
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-thumb">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><g class="sun-rays"><line x1="12" y1="1.5" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.5" y2="6.5"/><line x1="17.5" y1="17.5" x2="19.6" y2="19.6"/><line x1="4.4" y1="19.6" x2="6.5" y2="17.5"/><line x1="17.5" y1="6.5" x2="19.6" y2="4.4"/></g></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+        </span>
+      </span>
+    </button>
+    <a class="nav-cta" href="#contact"><span>Request Assessment</span></a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-noise" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <p class="eyebrow">Offensive Security &amp; Training</p>
+        <h1>We find the <span class="highlight">fault line<svg class="underline-swipe" viewBox="0 0 220 12" aria-hidden="true"><path d="M2 8 C 40 2, 80 2, 110 6 C 140 10, 180 10, 218 4" stroke="#C8391F" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span><br>before something else does.</h1>
+        <p class="lede">Redline Security runs adversarial penetration tests and hands-on offensive-security training for engineering teams who need evidence of risk, not a checklist. Every engagement ends in a report you can act on the same week.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-solid" href="#contact"><span>Request an Assessment</span></a>
+          <a class="btn btn-line" href="#services"><span>Explore Training</span></a>
         </div>
-    </header>
-
-    <main id="top">
-
-        <!-- HERO -->
-        <section class="hero">
-            <div class="hero-glow" aria-hidden="true"></div>
-            <div class="hero-glow-2" aria-hidden="true"></div>
-            <div class="wrap hero-grid">
-                <div class="reveal">
-                    <p class="eyebrow">Offensive Security &amp; Training</p>
-                    <h1>We find the <span class="highlight">fault line<svg class="underline-swipe" viewBox="0 0 220 12" aria-hidden="true"><path d="M2 8 C 40 2, 80 2, 110 6 C 140 10, 180 10, 218 4" stroke="#C8391F" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span><br>before something else does.</h1>
-                    <p class="lede">Redline Security runs adversarial penetration tests and hands-on offensive-security training for engineering teams who need evidence of risk, not a checklist. Every engagement ends in a report you can act on the same week.</p>
-                    <div class="hero-ctas">
-                        <a class="btn btn-solid" href="#contact"><span>Request an Assessment</span></a>
-                        <a class="btn btn-line" href="#services"><span>Explore Training</span></a>
-                    </div>
-                    <div class="hero-trust">
-                        <span>Trusted by security teams at</span>
-                        <div class="trust-marks">
-                            <span>FINTECH CO.</span><span>NORTHBEAM</span><span>VERUS HEALTH</span><span>ORBITAL</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="fault-panel reveal" data-reveal-delay="120">
-                    <div class="fault-panel-head">
-                        <span>FIELD REPORT — LIVE SCAN</span>
-                        <span class="live"><i class="pulse-dot"></i>ACTIVE</span>
-                    </div>
-                    <div class="fault-svg-wrap">
-                        <svg viewBox="0 0 460 220" width="100%" height="auto" role="img" aria-label="Illustrative diagram of a security scan detecting vulnerabilities along a network trace">
-                            <defs>
-                                <linearGradient id="lineGlow" x1="0" y1="0" x2="1" y2="0">
-                                    <stop offset="0%" stop-color="#D89A3E" stop-opacity="0.2"/>
-                                    <stop offset="50%" stop-color="#D89A3E" stop-opacity="1"/>
-                                    <stop offset="100%" stop-color="#D89A3E" stop-opacity="0.2"/>
-                                </linearGradient>
-                            </defs>
-                            <line class="grid-line" x1="0" y1="40" x2="460" y2="40"/>
-                            <line class="grid-line" x1="0" y1="90" x2="460" y2="90"/>
-                            <line class="grid-line" x1="0" y1="140" x2="460" y2="140"/>
-                            <line class="grid-line" x1="0" y1="190" x2="460" y2="190"/>
-
-                            <path class="fault-line-draw" d="M0,110 L40,110 L55,60 L70,150 L90,110 L140,110 L155,170 L172,40 L190,110 L250,110 L268,80 L286,130 L305,110 L360,110 L378,55 L396,110 L460,110"/>
-
-                            <g>
-                                <circle class="marker" cx="172" cy="40" r="5" style="animation-delay:0.9s"/>
-                                <text class="tag tag-crit" x="182" y="36" style="animation-delay:1s">CRITICAL — AUTH BYPASS</text>
-
-                                <circle class="marker" cx="286" cy="130" r="5" style="animation-delay:1.6s"/>
-                                <text class="tag" x="296" y="145" style="animation-delay:1.7s">MEDIUM — MISCONFIG</text>
-
-                                <circle class="marker" cx="378" cy="55" r="5" style="animation-delay:2.3s"/>
-                                <text class="tag tag-crit" x="313" y="50" style="animation-delay:2.4s">HIGH — EXPOSED API</text>
-                            </g>
-                        </svg>
-                    </div>
-                    <div class="fault-panel-foot">
-                        <span>TARGET: staging.client-env</span>
-                        <span>DURATION: 96H</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- STATS -->
-        <section class="stats">
-            <div class="wrap stats-grid reveal-stagger">
-                <div class="stat">
-                    <div class="stat-num" data-count="340" data-suffix="+">0</div>
-                    <div class="stat-label">Engagements delivered</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-num" data-count="1200" data-suffix="+">0</div>
-                    <div class="stat-label">Critical findings remediated</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-num" data-count="6.4" data-suffix=" days" data-decimal="1">0</div>
-                    <div class="stat-label">Avg. time to first report</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-num" data-count="92" data-suffix="%">0</div>
-                    <div class="stat-label">Clients who re-engage annually</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SERVICES -->
-        <section class="section" id="services">
-            <div class="wrap">
-                <div class="section-head reveal">
-                    <p class="eyebrow">Two Engagement Tracks</p>
-                    <h2>Test your systems, or train your team to.</h2>
-                    <p>Most clients start with an assessment. Many stay for the training — so the next fault line gets caught internally, before it reaches us.</p>
-                </div>
-            </div>
-            <div class="wrap">
-                <div class="tracks">
-                    <div class="track assess reveal">
-                        <span class="track-tag">Assessment Track</span>
-                        <h3>Penetration Testing</h3>
-                        <p>Manual, adversary-style testing against the systems your business actually depends on — not an automated scan with a logo on the cover page.</p>
-                        <ul class="track-list">
-                            <li><span>Network &amp; infrastructure pentest</span><span class="code">NET-01</span></li>
-                            <li><span>Web &amp; API application testing</span><span class="code">APP-02</span></li>
-                            <li><span>Cloud configuration review</span><span class="code">CLD-03</span></li>
-                            <li><span>Authorized social engineering</span><span class="code">SOC-04</span></li>
-                            <li><span>Red team simulation</span><span class="code">RED-05</span></li>
-                        </ul>
-                    </div>
-                    <div class="track train reveal" data-reveal-delay="120">
-                        <span class="track-tag">Training Track</span>
-                        <h3>Offensive Security Training</h3>
-                        <p>Cohort-based and in-house training that turns your engineers into the first line of defense, taught by people who test in production.</p>
-                        <ul class="track-list">
-                            <li><span>Ethical hacking bootcamp</span><span class="code">TRN-01</span></li>
-                            <li><span>OSCP / CEH exam preparation</span><span class="code">TRN-02</span></li>
-                            <li><span>Corporate security awareness</span><span class="code">TRN-03</span></li>
-                            <li><span>Live-fire lab environments</span><span class="code">TRN-04</span></li>
-                            <li><span>Secure code review workshops</span><span class="code">TRN-05</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="divider">
-            <svg viewBox="0 0 140 16"><path d="M0,8 L40,8 L48,2 L56,14 L64,8 L140,8" fill="none" stroke="#C7CEC9" stroke-width="1.5"/></svg>
+        <div class="hero-trust">
+          <span>Trusted by security teams at</span>
+          <div class="trust-marks">
+            <span>FINTECH CO.</span><span>NORTHBEAM</span><span>VERUS HEALTH</span><span>ORBITAL</span>
+          </div>
         </div>
+      </div>
 
-        <!-- METHODOLOGY -->
-        <section class="section method-strip" id="method">
-            <div class="wrap">
-                <div class="section-head reveal">
-                    <p class="eyebrow">How an Engagement Runs</p>
-                    <h2>A fixed process. A predictable report.</h2>
-                    <p>Every engagement follows the same four stages, so you always know what week you're in.</p>
-                </div>
-            </div>
-            <div class="wrap">
-                <div class="method-grid">
-                    <div class="method-step reveal">
-                        <div class="method-num">01 / SCOPE</div>
-                        <h4>Define the target</h4>
-                        <p>We agree on scope, rules of engagement, and success criteria before a single test begins.</p>
-                    </div>
-                    <div class="method-step reveal" data-reveal-delay="80">
-                        <div class="method-num">02 / TEST</div>
-                        <h4>Run the engagement</h4>
-                        <p>Manual and tool-assisted testing against the agreed scope, with critical findings flagged same-day.</p>
-                    </div>
-                    <div class="method-step reveal" data-reveal-delay="160">
-                        <div class="method-num">03 / REPORT</div>
-                        <h4>Document the findings</h4>
-                        <p>A ranked, reproducible report with evidence, business impact, and concrete remediation steps.</p>
-                    </div>
-                    <div class="method-step reveal" data-reveal-delay="240">
-                        <div class="method-num">04 / VERIFY</div>
-                        <h4>Confirm the fix</h4>
-                        <p>A free re-test on critical and high findings once your team has shipped a fix.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CREDENTIALS -->
-        <section class="section creds" id="credentials">
-            <div class="wrap">
-                <div class="section-head reveal">
-                    <p class="eyebrow">Why Teams Choose Redline</p>
-                    <h2>Certified. Accountable. On the record.</h2>
-                    <p>Every lead tester on an engagement holds an industry-recognized certification, and every report is signed by name.</p>
-                </div>
-                <div class="cred-row">
-                    <div class="cred-card reveal">
-                        <span class="mono-tag">CERT</span>
-                        <h4>OSCP-certified leads</h4>
-                        <p>Every engagement is led by an Offensive Security Certified Professional.</p>
-                    </div>
-                    <div class="cred-card reveal" data-reveal-delay="80">
-                        <span class="mono-tag">CERT</span>
-                        <h4>CEH practitioners</h4>
-                        <p>Our trainers hold active Certified Ethical Hacker credentials, kept current annually.</p>
-                    </div>
-                    <div class="cred-card reveal" data-reveal-delay="160">
-                        <span class="mono-tag">SCOPE</span>
-                        <h4>Written authorization only</h4>
-                        <p>We test only within a signed scope of work. No exceptions, no gray areas.</p>
-                    </div>
-                    <div class="cred-card reveal" data-reveal-delay="240">
-                        <span class="mono-tag">NDA</span>
-                        <h4>Confidential by default</h4>
-                        <p>Every client and finding is covered under mutual NDA before work begins.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="divider">
-            <svg viewBox="0 0 140 16"><path d="M0,8 L40,8 L48,2 L56,14 L64,8 L140,8" fill="none" stroke="#C7CEC9" stroke-width="1.5"/></svg>
+      <div class="fault-panel reveal" data-reveal-delay="120">
+        <div class="fault-panel-head">
+          <span>FIELD REPORT — LIVE SCAN</span>
+          <span class="live"><i class="pulse-dot"></i>ACTIVE</span>
         </div>
+        <div class="fault-svg-wrap">
+          <svg viewBox="0 0 460 220" width="100%" height="auto" role="img" aria-label="Illustrative diagram of a security scan detecting vulnerabilities along a network trace">
+            <defs>
+              <linearGradient id="lineGlow" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#D89A3E" stop-opacity="0.2"/>
+                <stop offset="50%" stop-color="#D89A3E" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#D89A3E" stop-opacity="0.2"/>
+              </linearGradient>
+            </defs>
+            <line class="grid-line" x1="0" y1="40" x2="460" y2="40"/>
+            <line class="grid-line" x1="0" y1="90" x2="460" y2="90"/>
+            <line class="grid-line" x1="0" y1="140" x2="460" y2="140"/>
+            <line class="grid-line" x1="0" y1="190" x2="460" y2="190"/>
 
-        <!-- TESTIMONIALS -->
-        <section class="section" id="reviews">
-            <div class="wrap">
-                <div class="section-head reveal">
-                    <p class="eyebrow">Client Sign-Off</p>
-                    <h2>What teams say after the report lands.</h2>
-                </div>
-                <div class="testimonial-grid">
-                    <div class="t-card reveal">
-                        <span class="t-stamp">Engagement closed</span>
-                        <p class="quote">The report was the first one our engineers actually read cover to cover. Every finding had a reproduction path.</p>
-                        <div class="t-meta"><span>VP Engineering</span><span>Fintech, Series C</span></div>
-                    </div>
-                    <div class="t-card reveal" data-reveal-delay="80">
-                        <span class="t-stamp">Engagement closed</span>
-                        <p class="quote">We sent four engineers through the bootcamp. Two found and fixed real issues in our own product within a month.</p>
-                        <div class="t-meta"><span>Head of Platform</span><span>SaaS, 200 employees</span></div>
-                    </div>
-                    <div class="t-card reveal" data-reveal-delay="160">
-                        <span class="t-stamp">Engagement closed</span>
-                        <p class="quote">Re-test came back clean on every critical finding. Straightforward process from scoping to sign-off.</p>
-                        <div class="t-meta"><span>CISO</span><span>Healthcare tech</span></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <path class="fault-line-draw" d="M0,110 L40,110 L55,60 L70,150 L90,110 L140,110 L155,170 L172,40 L190,110 L250,110 L268,80 L286,130 L305,110 L360,110 L378,55 L396,110 L460,110"/>
 
-        <!-- FAQ -->
-        <section class="section" id="faq">
-            <div class="wrap">
-                <div class="section-head reveal">
-                    <p class="eyebrow">Frequently Asked</p>
-                    <h2>Before you reach out.</h2>
-                </div>
-                <div class="faq-list reveal">
-                    <details open>
-                        <summary>Do you test without written authorization?<span class="plus">+</span></summary>
-                        <p>No. We only operate under a signed scope of work and rules of engagement. This protects you, your users, and our team.</p>
-                    </details>
-                    <details>
-                        <summary>How long does a typical engagement take?<span class="plus">+</span></summary>
-                        <p>Most assessments run 1–3 weeks depending on scope, with critical findings flagged to your team as soon as they're confirmed — not held until the final report.</p>
-                    </details>
-                    <details>
-                        <summary>Do you offer a re-test after remediation?<span class="plus">+</span></summary>
-                        <p>Yes. One re-test on critical and high-severity findings is included in every assessment engagement.</p>
-                    </details>
-                    <details>
-                        <summary>Can training be delivered in-house?<span class="plus">+</span></summary>
-                        <p>Yes. Our training track runs as public cohorts or as a private, in-house program scoped to your team's stack and threat model.</p>
-                    </details>
-                    <details>
-                        <summary>What does a report actually include?<span class="plus">+</span></summary>
-                        <p>An executive summary, a ranked findings list with evidence and business impact, and step-by-step remediation guidance for each issue.</p>
-                    </details>
-                </div>
-            </div>
-        </section>
+            <g>
+              <circle class="marker" cx="172" cy="40" r="5" style="animation-delay:0.9s"/>
+              <text class="tag tag-crit" x="182" y="36" style="animation-delay:1s">CRITICAL — AUTH BYPASS</text>
 
-        <!-- CONTACT -->
-        <section class="section contact" id="contact">
-            <div class="wrap contact-grid">
-                <div class="contact-left reveal">
-                    <p class="eyebrow">Start an Engagement</p>
-                    <h2>Request an assessment or a training slot.</h2>
-                    <p>Tell us what you need tested, or which track your team wants to train on. We reply within one business day with next steps.</p>
-                    <div class="contact-detail"><span class="ico">✉</span> engagements@redlinesecurity.example</div>
-                    <div class="contact-detail"><span class="ico">☎</span> +1 (555) 019-4420</div>
-                    <div class="contact-detail"><span class="ico">◷</span> MON–FRI, 9:00–18:00 ET</div>
-                </div>
-                <div class="reveal" data-reveal-delay="120">
-                    <form id="contact-form" novalidate>
-                        <div class="form-row">
-                            <div class="field">
-                                <label for="name">Full name</label>
-                                <input id="name" name="name" type="text" placeholder="Jordan Alvarez" required>
-                                <span class="field-error">Please enter your name.</span>
-                            </div>
-                            <div class="field">
-                                <label for="company">Company</label>
-                                <input id="company" name="company" type="text" placeholder="Company name" required>
-                                <span class="field-error">Please enter your company.</span>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="field">
-                                <label for="email">Work email</label>
-                                <input id="email" name="email" type="email" placeholder="you@company.com" required>
-                                <span class="field-error">Please enter a valid email.</span>
-                            </div>
-                            <div class="field">
-                                <label for="interest">Interested in</label>
-                                <select id="interest" name="interest">
-                                    <option>Penetration testing</option>
-                                    <option>Offensive security training</option>
-                                    <option>Both</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label for="message">What do you need tested or trained on?</label>
-                            <textarea id="message" name="message" placeholder="A brief description of your systems, timeline, or team size."></textarea>
-                        </div>
-                        <button class="submit-btn" type="submit">
-                            <span class="btn-text">Send Request</span>
-                            <span class="btn-spinner" aria-hidden="true"></span>
-                        </button>
-                        <p class="form-note">We'll respond from a verified @redlinesecurity.example address within 1 business day.</p>
-                        <p class="form-success" id="form-success" role="status">Request received. A member of our team will reply within 1 business day.</p>
-                    </form>
-                </div>
-            </div>
-        </section>
+              <circle class="marker" cx="286" cy="130" r="5" style="animation-delay:1.6s"/>
+              <text class="tag" x="296" y="145" style="animation-delay:1.7s">MEDIUM — MISCONFIG</text>
 
-    </main>
-
-    <footer>
-        <div class="wrap">
-            <div class="footer-top">
-                <div>
-                    <div class="footer-logo">REDLINE SECURITY</div>
-                    <p>Penetration testing and offensive security training for teams that need proof, not promises.</p>
-                </div>
-                <div class="footer-cols">
-                    <div class="footer-col">
-                        <h5>Company</h5>
-                        <a href="#services">Services</a>
-                        <a href="#method">Methodology</a>
-                        <a href="#credentials">Credentials</a>
-                        <a href="#reviews">Reviews</a>
-                    </div>
-                    <div class="footer-col">
-                        <h5>Support</h5>
-                        <a href="#faq">FAQ</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>© 2026 Redline Security. All rights reserved.</span>
-                <span>Engagements conducted under signed authorization only.</span>
-            </div>
+              <circle class="marker" cx="378" cy="55" r="5" style="animation-delay:2.3s"/>
+              <text class="tag tag-crit" x="313" y="50" style="animation-delay:2.4s">HIGH — EXPOSED API</text>
+            </g>
+          </svg>
         </div>
-    </footer>
+        <div class="fault-panel-foot">
+          <span>TARGET: staging.client-env</span>
+          <span>DURATION: 96H</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+  <!-- STATS -->
+  <section class="stats">
+    <div class="wrap stats-grid">
+      <div class="stat reveal">
+        <div class="stat-num" data-count="340" data-suffix="+">0</div>
+        <div class="stat-label">Engagements delivered</div>
+      </div>
+      <div class="stat reveal" data-reveal-delay="80">
+        <div class="stat-num" data-count="1200" data-suffix="+">0</div>
+        <div class="stat-label">Critical findings remediated</div>
+      </div>
+      <div class="stat reveal" data-reveal-delay="160">
+        <div class="stat-num" data-count="6.4" data-suffix=" days" data-decimal="1">0</div>
+        <div class="stat-label">Avg. time to first report</div>
+      </div>
+      <div class="stat reveal" data-reveal-delay="240">
+        <div class="stat-num" data-count="92" data-suffix="%">0</div>
+        <div class="stat-label">Clients who re-engage annually</div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        /* ======================================================================
-               REDLINE SECURITY — ENHANCED INTERACTIONS
-               Theme toggle, scroll progress, reveal, counters, form, back-to-top.
-               ====================================================================== */
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <p class="eyebrow">About Redline</p>
+        <h2>Testers first. Consultants second.</h2>
+        <p class="about-lede">Redline Security was founded by operators who got tired of reports nobody read. We're a small team of practitioners — the same people who scope your engagement are the ones on keyboard during it, and the ones who sign the final report.</p>
+        <p>We work with engineering-led teams: fintechs, healthtech, SaaS platforms, and infrastructure providers who'd rather find their own faults than have someone else find them first. No offshore delivery teams, no junior hand-offs — every engagement is led by a certified practitioner from kickoff to re-test.</p>
+        <div class="about-values">
+          <div class="about-value">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.6 8.7 8 10 4.4-1.3 8-5 8-10V6l-8-4Z"/></svg>
+            <div><h4>Evidence over assumptions</h4><p>Every finding ships with a reproduction path, not a CVSS score alone.</p></div>
+          </div>
+          <div class="about-value">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+            <div><h4>Same-day critical alerts</h4><p>We don't sit on a critical finding until the final report is due.</p></div>
+          </div>
+          <div class="about-value">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10l8-6 8 6v10"/><path d="M9 20v-6h6v6"/></svg>
+            <div><h4>Built to be re-tested</h4><p>Our methodology is repeatable, so your fix verification is fast and free.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-panel reveal" data-reveal-delay="120">
+        <svg viewBox="0 0 320 360" aria-hidden="true">
+          <rect x="1" y="1" width="318" height="358" rx="10"/>
+          <circle cx="160" cy="130" r="58" class="about-ring about-ring-1"/>
+          <circle cx="160" cy="130" r="84" class="about-ring about-ring-2"/>
+          <circle cx="160" cy="130" r="110" class="about-ring about-ring-3"/>
+          <path d="M110 130a50 50 0 1 1 100 0 50 50 0 0 1-100 0Z" class="about-core"/>
+          <path d="M138 130h44M160 108v44" class="about-cross"/>
+          <text x="160" y="248" text-anchor="middle" class="about-panel-label">EST. 2016</text>
+          <text x="160" y="270" text-anchor="middle" class="about-panel-sub">OSCP · CEH · CREST-ALIGNED</text>
+          <line x1="40" y1="300" x2="280" y2="300" class="about-panel-rule"/>
+          <text x="40" y="326" class="about-panel-foot">HEADQUARTERS</text>
+          <text x="40" y="344" class="about-panel-val">REMOTE-FIRST, GLOBAL COVERAGE</text>
+        </svg>
+      </div>
+    </div>
+  </section>
 
-        document.addEventListener('DOMContentLoaded', () => {
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Two Engagement Tracks</p>
+        <h2>Test your systems, or train your team to.</h2>
+        <p>Most clients start with an assessment. Many stay for the training — so the next fault line gets caught internally, before it reaches us.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="tracks">
+        <div class="track assess reveal">
+          <span class="track-tag">Assessment Track</span>
+          <h3>Penetration Testing</h3>
+          <p>Manual, adversary-style testing against the systems your business actually depends on — not an automated scan with a logo on the cover page.</p>
+          <ul class="track-list">
+            <li><span>Network &amp; infrastructure pentest</span><span class="code">NET-01</span></li>
+            <li><span>Web &amp; API application testing</span><span class="code">APP-02</span></li>
+            <li><span>Cloud configuration review</span><span class="code">CLD-03</span></li>
+            <li><span>Authorized social engineering</span><span class="code">SOC-04</span></li>
+            <li><span>Red team simulation</span><span class="code">RED-05</span></li>
+          </ul>
+          <button class="service-more" type="button" data-modal-trigger data-service="pentest">
+            <svg><use href="#icon-compass"/></svg>
+            More info / Contact us
+          </button>
+        </div>
+        <div class="track train reveal" data-reveal-delay="120">
+          <span class="track-tag">Training Track</span>
+          <h3>Offensive Security Training</h3>
+          <p>Cohort-based and in-house training that turns your engineers into the first line of defense, taught by people who test in production.</p>
+          <ul class="track-list">
+            <li><span>Ethical hacking bootcamp</span><span class="code">TRN-01</span></li>
+            <li><span>OSCP / CEH exam preparation</span><span class="code">TRN-02</span></li>
+            <li><span>Corporate security awareness</span><span class="code">TRN-03</span></li>
+            <li><span>Live-fire lab environments</span><span class="code">TRN-04</span></li>
+            <li><span>Secure code review workshops</span><span class="code">TRN-05</span></li>
+          </ul>
+          <button class="service-more" type="button" data-modal-trigger data-service="training">
+            <svg><use href="#icon-compass"/></svg>
+            More info / Contact us
+          </button>
+        </div>
+      </div>
+    </div>
 
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    <!-- OTHER SERVICES -->
+    <div class="wrap other-services-wrap">
+      <div class="section-head reveal" data-reveal-delay="80">
+        <p class="eyebrow">Also Available</p>
+        <h3 class="sub-head">A few more ways we help teams stay ahead.</h3>
+      </div>
+      <div class="other-services-grid">
+        <button class="service-card reveal" type="button" data-modal-trigger data-service="incident">
+          <svg class="service-card-icon"><use href="#icon-flag"/></svg>
+          <h4>Incident Response</h4>
+          <p>Rapid-response investigation and containment when something's already gone wrong.</p>
+          <span class="service-card-link">More info <svg><use href="#icon-compass"/></svg></span>
+        </button>
+        <button class="service-card reveal" type="button" data-reveal-delay="60" data-modal-trigger data-service="compliance">
+          <svg class="service-card-icon"><use href="#icon-doc"/></svg>
+          <h4>Compliance &amp; Audit</h4>
+          <p>Evidence-ready testing mapped to SOC 2, ISO 27001, and PCI-DSS requirements.</p>
+          <span class="service-card-link">More info <svg><use href="#icon-compass"/></svg></span>
+        </button>
+        <button class="service-card reveal" type="button" data-reveal-delay="120" data-modal-trigger data-service="cloud">
+          <svg class="service-card-icon"><use href="#icon-cloud"/></svg>
+          <h4>Cloud Security Review</h4>
+          <p>IAM, network, and workload configuration review across AWS, Azure, and GCP.</p>
+          <span class="service-card-link">More info <svg><use href="#icon-compass"/></svg></span>
+        </button>
+        <button class="service-card reveal" type="button" data-reveal-delay="180" data-modal-trigger data-service="vciso">
+          <svg class="service-card-icon"><use href="#icon-users"/></svg>
+          <h4>vCISO Advisory</h4>
+          <p>Fractional security leadership for teams that need direction, not another hire.</p>
+          <span class="service-card-link">More info <svg><use href="#icon-compass"/></svg></span>
+        </button>
+      </div>
+    </div>
 
-            /* ---------------- THEME TOGGLE ---------------- */
-            const themeToggle = document.getElementById('themeToggle');
-            const html = document.documentElement;
+    <!-- ROOM FOR HIRE -->
+    <div class="wrap">
+      <div class="room-hire reveal">
+        <div class="room-hire-copy">
+          <span class="track-tag room-tag">Space For Hire</span>
+          <h3>Hire our on-site Cyber Range.</h3>
+          <p>Our fitted training room and lab environment is available to hire for private workshops, CTFs, and vendor-led sessions — 12 seated stations, isolated network range, and a briefing screen, in a space built for exactly this.</p>
+          <ul class="room-hire-list">
+            <li>Up to 12 seats, isolated lab network</li>
+            <li>Half-day, full-day, and multi-day rates</li>
+            <li>Optional Redline facilitator on request</li>
+          </ul>
+          <button class="service-more" type="button" data-modal-trigger data-service="room">
+            <svg><use href="#icon-building"/></svg>
+            Check availability
+          </button>
+        </div>
+        <svg class="room-hire-art" viewBox="0 0 280 220" aria-hidden="true">
+          <rect x="1" y="1" width="278" height="218" rx="8"/>
+          <rect x="24" y="26" width="232" height="70" rx="4" class="room-screen"/>
+          <path d="M40 44h60M40 56h90M40 68h50" class="room-screen-lines"/>
+          <g class="room-desks">
+            <rect x="24" y="118" width="52" height="14" rx="2"/>
+            <rect x="88" y="118" width="52" height="14" rx="2"/>
+            <rect x="152" y="118" width="52" height="14" rx="2"/>
+            <rect x="24" y="150" width="52" height="14" rx="2"/>
+            <rect x="88" y="150" width="52" height="14" rx="2"/>
+            <rect x="152" y="150" width="52" height="14" rx="2"/>
+          </g>
+          <text x="24" y="196" class="room-hire-label">CYBER RANGE — ROOM B</text>
+        </svg>
+      </div>
+    </div>
 
-            function setTheme(theme) {
-                html.setAttribute('data-theme', theme);
-                localStorage.setItem('theme', theme);
-            }
+    <!-- WHY CHOOSE US -->
+    <div class="wrap why-choose-wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Why Teams Choose Redline</p>
+        <h3 class="sub-head">Certified. Accountable. On the record.</h3>
+        <p>Every lead tester on an engagement holds an industry-recognized certification, and every report is signed by name.</p>
+      </div>
+      <div class="cred-row">
+        <div class="cred-card reveal">
+          <span class="mono-tag">CERT</span>
+          <h4>OSCP-certified leads</h4>
+          <p>Every engagement is led by an Offensive Security Certified Professional.</p>
+        </div>
+        <div class="cred-card reveal" data-reveal-delay="80">
+          <span class="mono-tag">CERT</span>
+          <h4>CEH practitioners</h4>
+          <p>Our trainers hold active Certified Ethical Hacker credentials, kept current annually.</p>
+        </div>
+        <div class="cred-card reveal" data-reveal-delay="160">
+          <span class="mono-tag">SCOPE</span>
+          <h4>Written authorization only</h4>
+          <p>We test only within a signed scope of work. No exceptions, no gray areas.</p>
+        </div>
+        <div class="cred-card reveal" data-reveal-delay="240">
+          <span class="mono-tag">NDA</span>
+          <h4>Confidential by default</h4>
+          <p>Every client and finding is covered under mutual NDA before work begins.</p>
+        </div>
+      </div>
+    </div>
 
-            function getPreferredTheme() {
-                const stored = localStorage.getItem('theme');
-                if (stored) return stored;
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    return 'dark';
-                }
-                return 'light';
-            }
+    <!-- QUICK TESTIMONIAL STRIP -->
+    <div class="wrap">
+      <div class="testimonial-strip reveal">
+        <svg class="t-strip-quote" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8c-2.2 0-4 1.8-4 4v4h6v-6H6a2 2 0 0 1 2-2V8Zm10 0c-2.2 0-4 1.8-4 4v4h6v-6h-3a2 2 0 0 1 2-2V8Z"/></svg>
+        <p>“The report was the first one our engineers actually read cover to cover — every finding had a reproduction path.”</p>
+        <span>— VP Engineering, Fintech, Series C</span>
+      </div>
+    </div>
+  </section>
 
-            // Apply initial theme
-            setTheme(getPreferredTheme());
+  <div class="divider">
+    <svg viewBox="0 0 140 16"><path d="M0,8 L40,8 L48,2 L56,14 L64,8 L140,8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+  </div>
 
-            if (themeToggle) {
-                themeToggle.addEventListener('click', () => {
-                    const current = html.getAttribute('data-theme');
-                    const next = current === 'dark' ? 'light' : 'dark';
-                    setTheme(next);
-                });
-            }
+  <!-- METHODOLOGY -->
+  <section class="section method-strip" id="method">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">How an Engagement Runs</p>
+        <h2>A fixed process. A predictable report.</h2>
+        <p>Every engagement follows the same four stages, so you always know what week you're in.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="method-grid">
+        <div class="method-step reveal">
+          <div class="method-num">01 / SCOPE</div>
+          <h4>Define the target</h4>
+          <p>We agree on scope, rules of engagement, and success criteria before a single test begins.</p>
+        </div>
+        <div class="method-step reveal" data-reveal-delay="80">
+          <div class="method-num">02 / TEST</div>
+          <h4>Run the engagement</h4>
+          <p>Manual and tool-assisted testing against the agreed scope, with critical findings flagged same-day.</p>
+        </div>
+        <div class="method-step reveal" data-reveal-delay="160">
+          <div class="method-num">03 / REPORT</div>
+          <h4>Document the findings</h4>
+          <p>A ranked, reproducible report with evidence, business impact, and concrete remediation steps.</p>
+        </div>
+        <div class="method-step reveal" data-reveal-delay="240">
+          <div class="method-num">04 / VERIFY</div>
+          <h4>Confirm the fix</h4>
+          <p>A free re-test on critical and high findings once your team has shipped a fix.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            // Listen for system theme changes
-            if (window.matchMedia) {
-                const darkMq = window.matchMedia('(prefers-color-scheme: dark)');
-                darkMq.addEventListener('change', (e) => {
-                    if (!localStorage.getItem('theme')) {
-                        setTheme(e.matches ? 'dark' : 'light');
-                    }
-                });
-            }
+  <div class="divider">
+    <svg viewBox="0 0 140 16"><path d="M0,8 L40,8 L48,2 L56,14 L64,8 L140,8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+  </div>
 
-            /* ---------------- SCROLL PROGRESS ---------------- */
-            const progressBar = document.getElementById('scrollProgress');
-            const header = document.getElementById('siteHeader');
+  <!-- DEMO -->
+  <section class="section demo" id="demo">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">See It In Action</p>
+        <h2>Run a sample scan, right here.</h2>
+        <p>This is a scripted preview of how findings surface during a real engagement — no target is actually being touched. Your real report arrives with reproduction steps, evidence, and severity for each item.</p>
+      </div>
+      <div class="demo-panel reveal" data-reveal-delay="100">
+        <div class="demo-panel-head">
+          <span>DEMO SCAN — SANDBOXED</span>
+          <span class="demo-status" id="demoStatus">IDLE</span>
+        </div>
+        <div class="demo-body">
+          <div class="demo-terminal" id="demoTerminal" aria-live="polite">
+            <p class="demo-placeholder" id="demoPlaceholder">Press "Run Demo Scan" to see a sample of how findings are surfaced during an engagement.</p>
+          </div>
+          <div class="demo-progress-track">
+            <div class="demo-progress-fill" id="demoProgressFill"></div>
+          </div>
+        </div>
+        <div class="demo-panel-foot">
+          <button class="btn btn-solid demo-run" id="demoRunBtn" type="button"><span>Run Demo Scan</span></button>
+          <a class="btn btn-line" href="#contact"><span>Get a Real Assessment</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            function updateOnScroll() {
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-                if (progressBar) progressBar.style.width = pct + '%';
+  <div class="divider">
+    <svg viewBox="0 0 140 16"><path d="M0,8 L40,8 L48,2 L56,14 L64,8 L140,8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+  </div>
 
-                if (header) header.classList.toggle('scrolled', scrollTop > 8);
+  <!-- REVIEWS -->
+  <section class="section reviews-section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Client Sign-Off</p>
+        <h2>Hear it, then rate it yourself.</h2>
+      </div>
 
-                const backToTop = document.getElementById('backToTop');
-                if (backToTop) backToTop.classList.toggle('visible', scrollTop > 480);
-            }
-            window.addEventListener('scroll', updateOnScroll, { passive: true });
-            updateOnScroll();
+      <div class="review-video-block reveal">
+        <p class="review-video-title">A 90-second look at how an engagement actually feels from your side of the table.</p>
+        <div class="video-frame" id="videoFrame">
+          <video id="introVideo" playsinline preload="none" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%230D1319'/%3E%3Cline x1='0' y1='60' x2='640' y2='60' stroke='%2326313B'/%3E%3Cline x1='0' y1='150' x2='640' y2='150' stroke='%2326313B'/%3E%3Cline x1='0' y1='240' x2='640' y2='240' stroke='%2326313B'/%3E%3Cline x1='0' y1='330' x2='640' y2='330' stroke='%2326313B'/%3E%3C/svg%3E">
+            <source src="assets/redline-intro.mp4" type="video/mp4">
+          </video>
+          <button class="video-play-btn" id="videoPlayBtn" aria-label="Play the client intro video" type="button">
+            <svg><use href="#icon-play"/></svg>
+          </button>
+          <span class="video-badge">CLIENT INTRO</span>
+        </div>
+        <p class="video-note">Replace <code>assets/redline-intro.mp4</code> with your own file to go live.</p>
+      </div>
 
-            /* ---------------- MOBILE MENU ---------------- */
-            const burger = document.getElementById('burger');
-            const navLinks = document.getElementById('navLinks');
+      <div class="rate-block reveal" data-reveal-delay="80">
+        <h3>How would you rate our service?</h3>
+        <p class="rate-sub">Left an engagement or training cohort recently? Tell the next team what to expect.</p>
+        <form id="review-form" class="review-form" novalidate>
+          <div class="star-rating" id="starRating">
+            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars"><svg><use href="#icon-star"/></svg></label>
+            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars"><svg><use href="#icon-star"/></svg></label>
+            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars"><svg><use href="#icon-star"/></svg></label>
+            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars"><svg><use href="#icon-star"/></svg></label>
+            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star"><svg><use href="#icon-star"/></svg></label>
+          </div>
+          <span class="field-error" id="ratingError">Please choose a star rating.</span>
 
-            if (burger && navLinks) {
-                burger.addEventListener('click', () => {
-                    const isOpen = navLinks.classList.toggle('open');
-                    burger.setAttribute('aria-expanded', String(isOpen));
-                });
+          <div class="form-row">
+            <div class="field">
+              <label for="reviewer-name">Full name</label>
+              <input id="reviewer-name" name="reviewer-name" type="text" placeholder="Jordan Alvarez" required>
+              <span class="field-error">Please enter your name.</span>
+            </div>
+            <div class="field">
+              <label for="reviewer-email">Email</label>
+              <input id="reviewer-email" name="reviewer-email" type="email" placeholder="you@company.com" required>
+              <span class="field-error">Please enter a valid email.</span>
+              <span class="field-hint">Shown publicly as jo****@domain.com</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="reviewer-comment">Your review</label>
+            <textarea id="reviewer-comment" name="reviewer-comment" placeholder="What stood out about the engagement or training?" required></textarea>
+            <span class="field-error">Please add a short comment.</span>
+          </div>
+          <button class="submit-btn" type="submit">
+            <span class="btn-text">Submit Review</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+          <p class="form-success" id="review-success" role="status">Thanks — your review has been posted below.</p>
+        </form>
+      </div>
 
-                navLinks.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navLinks.classList.remove('open');
-                        burger.setAttribute('aria-expanded', 'false');
-                    });
-                });
-            }
+      <div class="submitted-reviews">
+        <div class="submitted-reviews-head">
+          <h3>Recent reviews</h3>
+          <span class="review-count" id="reviewCount">0 reviews</span>
+        </div>
+        <div class="review-list" id="reviewList"></div>
+      </div>
+    </div>
+  </section>
 
-            /* ---------------- ACTIVE NAV LINK ---------------- */
-            const sections = Array.from(document.querySelectorAll('section[id]'));
-            const navAnchors = Array.from(document.querySelectorAll('[data-nav]'));
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Frequently Asked</p>
+        <h2>Before you reach out.</h2>
+      </div>
+      <div class="faq-list reveal">
+        <details open>
+          <summary>Do you test without written authorization?<span class="plus">+</span></summary>
+          <p>No. We only operate under a signed scope of work and rules of engagement. This protects you, your users, and our team.</p>
+        </details>
+        <details>
+          <summary>How long does a typical engagement take?<span class="plus">+</span></summary>
+          <p>Most assessments run 1–3 weeks depending on scope, with critical findings flagged to your team as soon as they're confirmed — not held until the final report.</p>
+        </details>
+        <details>
+          <summary>Do you offer a re-test after remediation?<span class="plus">+</span></summary>
+          <p>Yes. One re-test on critical and high-severity findings is included in every assessment engagement.</p>
+        </details>
+        <details>
+          <summary>Can training be delivered in-house?<span class="plus">+</span></summary>
+          <p>Yes. Our training track runs as public cohorts or as a private, in-house program scoped to your team's stack and threat model.</p>
+        </details>
+        <details>
+          <summary>What does a report actually include?<span class="plus">+</span></summary>
+          <p>An executive summary, a ranked findings list with evidence and business impact, and step-by-step remediation guidance for each issue.</p>
+        </details>
+      </div>
+    </div>
+  </section>
 
-            if (sections.length && navAnchors.length && 'IntersectionObserver' in window) {
-                const navObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const id = entry.target.getAttribute('id');
-                            navAnchors.forEach(a => {
-                                a.classList.toggle('active', a.getAttribute('href') === '#' + id);
-                            });
-                        }
-                    });
-                }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-left reveal">
+        <p class="eyebrow">Start an Engagement</p>
+        <h2>Request an assessment or a training slot.</h2>
+        <p>Tell us what you need tested, or which track your team wants to train on. We reply within one business day with next steps.</p>
+        <div class="contact-detail"><span class="ico">✉</span> engagements@redlinesecurity.example</div>
+        <div class="contact-detail"><span class="ico">☎</span> +1 (555) 019-4420</div>
+        <div class="contact-detail"><span class="ico">◷</span> MON–FRI, 9:00–18:00 ET</div>
+      </div>
+      <div class="reveal" data-reveal-delay="120">
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" placeholder="Jordan Alvarez" required>
+              <span class="field-error">Please enter your name.</span>
+            </div>
+            <div class="field">
+              <label for="company">Company</label>
+              <input id="company" name="company" type="text" placeholder="Company name" required>
+              <span class="field-error">Please enter your company.</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="email">Work email</label>
+              <input id="email" name="email" type="email" placeholder="you@company.com" required>
+              <span class="field-error">Please enter a valid email.</span>
+            </div>
+            <div class="field">
+              <label for="interest">Interested in</label>
+              <select id="interest" name="interest">
+                <option>Penetration testing</option>
+                <option>Offensive security training</option>
+                <option>Both</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">What do you need tested or trained on?</label>
+            <textarea id="message" name="message" placeholder="A brief description of your systems, timeline, or team size."></textarea>
+          </div>
+          <button class="submit-btn" type="submit">
+            <span class="btn-text">Send Request</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+          <p class="form-note">We'll respond from a verified @redlinesecurity.example address within 1 business day.</p>
+          <p class="form-success" id="form-success" role="status">Request received. A member of our team will reply within 1 business day.</p>
+        </form>
+      </div>
+    </div>
+  </section>
 
-                sections.forEach(sec => navObserver.observe(sec));
-            }
+</main>
 
-            /* ---------------- REVEAL-ON-SCROLL ---------------- */
-            const revealEls = document.querySelectorAll('.reveal');
-            const staggerEls = document.querySelectorAll('.reveal-stagger');
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect x="1" y="1" width="30" height="30" rx="6"/>
+            <path class="logo-mark-line" d="M5 19h5l2-9 4 18 3-13 2 4h6"/>
+          </svg>
+          REDLINE SECURITY
+        </div>
+        <p>Penetration testing and offensive security training for teams that need proof, not promises.</p>
+        <div class="social-row">
+          <a class="social-icon" href="#" aria-label="Redline Security on LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M4.5 4.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 9.8h3V21H3ZM9.5 9.8H12v1.5h.05c.4-.75 1.5-1.6 3.1-1.6 3.3 0 3.9 2.1 3.9 4.9V21h-3v-4.9c0-1.2 0-2.7-1.6-2.7-1.6 0-1.9 1.3-1.9 2.6V21h-3Z"/></svg>
+          </a>
+          <a class="social-icon" href="#" aria-label="Redline Security on X">
+            <svg viewBox="0 0 24 24"><path d="M4 4l7 9.2L4.4 20H6.6l5.6-5.9L16.7 20H20l-7.4-9.7L19.7 4h-2.2l-5.2 5.5L8 4Z"/></svg>
+          </a>
+          <a class="social-icon" href="#" aria-label="Redline Security on GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.3-3.4-1.3-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.8 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7 1 .7 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg>
+          </a>
+          <a class="social-icon" href="#" aria-label="Redline Security on YouTube">
+            <svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5a2.7 2.7 0 0 0-1.9 1.9A28 28 0 0 0 2 12a28 28 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-4.8ZM10 15V9l5.2 3Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#method">Methodology</a>
+          <a href="#demo">Demo</a>
+          <a href="#reviews">Reviews</a>
+        </div>
+        <div class="footer-col">
+          <h5>Support</h5>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Redline Security. All rights reserved.</span>
+      <span>Engagements conducted under signed authorization only.</span>
+    </div>
+  </div>
+</footer>
 
-            if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-                revealEls.forEach(el => el.classList.add('is-visible'));
-                staggerEls.forEach(el => el.classList.add('is-visible'));
-            } else {
-                const revealObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const el = entry.target;
-                            const delay = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
-                            setTimeout(() => {
-                                el.classList.add('is-visible');
-                            }, delay);
-                            revealObserver.unobserve(el);
-                        }
-                    });
-                }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+<div class="modal-overlay" id="serviceModal" aria-hidden="true">
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="Close dialog" type="button">&times;</button>
+    <svg class="modal-icon" id="modalIcon"><use href="#icon-compass"/></svg>
+    <span class="eyebrow" id="modalTag">SERVICE</span>
+    <h3 id="modalTitle">Service title</h3>
+    <p id="modalDesc">Service description goes here.</p>
+    <ul class="modal-list" id="modalList"></ul>
+    <div class="modal-actions">
+      
+      <a class="btn btn-solid" href="#contact" id="modalCta"><span>Contact us about this</span></a>
+    </div>
+  </div>
+</div>
 
-                revealEls.forEach(el => revealObserver.observe(el));
-                staggerEls.forEach(el => revealObserver.observe(el));
-            }
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
-            /* ---------------- ANIMATED STAT COUNTERS ---------------- */
-            const statEls = document.querySelectorAll('.stat-num[data-count]');
-
-            function animateCount(el) {
-                const target = parseFloat(el.getAttribute('data-count'));
-                const suffix = el.getAttribute('data-suffix') || '';
-                const decimals = parseInt(el.getAttribute('data-decimal') || '0', 10);
-                const duration = 1400;
-                const start = performance.now();
-
-                function tick(now) {
-                    const progress = Math.min((now - start) / duration, 1);
-                    const eased = 1 - Math.pow(1 - progress, 3);
-                    const value = target * eased;
-                    el.textContent = value.toFixed(decimals) + suffix;
-                    if (progress < 1) requestAnimationFrame(tick);
-                    else el.textContent = target.toFixed(decimals) + suffix;
-                }
-                requestAnimationFrame(tick);
-            }
-
-            if (statEls.length) {
-                if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-                    statEls.forEach(el => {
-                        const target = parseFloat(el.getAttribute('data-count'));
-                        const decimals = parseInt(el.getAttribute('data-decimal') || '0', 10);
-                        el.textContent = target.toFixed(decimals) + (el.getAttribute('data-suffix') || '');
-                    });
-                } else {
-                    const statObserver = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                animateCount(entry.target);
-                                statObserver.unobserve(entry.target);
-                            }
-                        });
-                    }, { threshold: 0.6 });
-                    statEls.forEach(el => statObserver.observe(el));
-                }
-            }
-
-            /* ---------------- BACK TO TOP ---------------- */
-            const backToTop = document.getElementById('backToTop');
-            if (backToTop) {
-                backToTop.addEventListener('click', () => {
-                    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-                });
-            }
-
-            /* ---------------- FORM VALIDATION + SUBMIT ---------------- */
-            const form = document.getElementById('contact-form');
-            const success = document.getElementById('form-success');
-
-            function validateField(input) {
-                const field = input.closest('.field');
-                if (!field) return true;
-                let valid = true;
-
-                if (input.hasAttribute('required') && !input.value.trim()) {
-                    valid = false;
-                }
-                if (input.type === 'email' && input.value.trim()) {
-                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailPattern.test(input.value.trim())) valid = false;
-                }
-
-                field.classList.toggle('invalid', !valid);
-                return valid;
-            }
-
-            if (form) {
-                form.querySelectorAll('input[required], input[type="email"]').forEach(input => {
-                    input.addEventListener('blur', () => validateField(input));
-                    input.addEventListener('input', () => {
-                        if (input.closest('.field')?.classList.contains('invalid')) validateField(input);
-                    });
-                });
-
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-
-                    const requiredInputs = form.querySelectorAll('input[required], input[type="email"]');
-                    let allValid = true;
-                    requiredInputs.forEach(input => {
-                        if (!validateField(input)) allValid = false;
-                    });
-
-                    if (!allValid) {
-                        const firstInvalid = form.querySelector('.field.invalid input');
-                        if (firstInvalid) firstInvalid.focus();
-                        return;
-                    }
-
-                    const submitBtn = form.querySelector('.submit-btn');
-                    submitBtn.classList.add('loading');
-                    submitBtn.disabled = true;
-
-                    setTimeout(() => {
-                        submitBtn.classList.remove('loading');
-                        form.querySelectorAll('input, textarea, select, button').forEach(el => el.disabled =
-                        true);
-                        if (success) success.classList.add('show');
-                    }, 900);
-                });
-            }
-
-        });
-    </script>
+<script src="script.js"></script>
 </body>
 </html>
