@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redline Security — Services</title>
+    <title>Michael Williams — Services</title>
     <meta name="description" content="Penetration testing, offensive security training, incident response, cloud reviews, and vCISO advisory — all led by certified practitioners." />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2312181F'/%3E%3Cpath d='M4 18h6l2-9 4 18 3-13 2 4h7' stroke='%23C8391F' stroke-width='2' fill='none'/%3E%3C/svg%3E" />
+    <link rel="icon" href="../assets/logo.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../styles.css" />
     <style>
+        /* ===== PAGE TRANSITION ===== */
         .page-wrap {
             opacity: 1;
             transform: translateY(0);
@@ -37,6 +38,193 @@
                 opacity: 1 !important;
                 transform: none !important;
             }
+        }
+
+        /* ===== SERVICE TRACK WITH IMAGE ===== */
+        .track {
+            display: flex;
+            flex-direction: column;
+        }
+        .track-content {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        .track-text {
+            flex: 1;
+        }
+        .track-image {
+            flex: 0 0 180px;
+            max-width: 180px;
+        }
+        .track-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid var(--grid);
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            background: var(--paper-raised);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .track-image img:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-md);
+        }
+        .track-image .placeholder-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: var(--grid);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-soft);
+            font-family: var(--mono);
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+            border: 1px dashed var(--ink-soft);
+        }
+        /* For other services grid cards */
+        .service-card .service-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 14px;
+            background: var(--grid);
+            border: 1px solid var(--grid);
+        }
+        .service-card .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .service-card .service-image .placeholder-img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-soft);
+            font-family: var(--mono);
+            font-size: 11px;
+            text-align: center;
+            padding: 8px;
+            background: var(--paper-raised);
+        }
+
+        /* ===== MODAL ENHANCEMENTS ===== */
+        .modal-upload-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--grid);
+        }
+        .modal-upload-section h4 {
+            font-size: 15px;
+            margin-bottom: 10px;
+            font-family: var(--display);
+        }
+        .modal-upload-section .upload-area {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .modal-upload-section .upload-preview {
+            max-width: 200px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--grid);
+            background: var(--paper);
+        }
+        .modal-upload-section .upload-preview img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .modal-upload-section .upload-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .modal-upload-section .upload-btn {
+            background: var(--redline);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--mono);
+            font-size: 12px;
+            transition: background 0.2s ease;
+        }
+        .modal-upload-section .upload-btn:hover {
+            background: #a62e17;
+        }
+        .modal-upload-section .remove-btn {
+            background: var(--ink-soft);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--mono);
+            font-size: 12px;
+            transition: background 0.2s ease;
+        }
+        .modal-upload-section .remove-btn:hover {
+            background: var(--ink);
+        }
+        .modal-upload-section .file-input {
+            display: none;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 700px) {
+            .track-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .track-image {
+                flex: 0 0 auto;
+                max-width: 140px;
+                width: 100%;
+            }
+            .modal-upload-section .upload-preview {
+                max-width: 100%;
+            }
+        }
+        /* Enhance modal content readability */
+        .modal-panel .detailed-description {
+            margin: 12px 0 16px;
+            line-height: 1.7;
+            color: var(--ink-soft);
+        }
+        .modal-panel .detailed-description strong {
+            color: var(--ink);
+        }
+        .modal-panel .feature-list {
+            list-style: disc;
+            padding-left: 20px;
+            margin: 8px 0 16px;
+        }
+        .modal-panel .feature-list li {
+            margin-bottom: 6px;
+            color: var(--ink-soft);
+        }
+        .modal-panel .why-choose {
+            background: var(--paper);
+            padding: 12px 16px;
+            border-radius: 6px;
+            border-left: 3px solid var(--redline);
+            margin: 12px 0 16px;
+            font-size: 14px;
+        }
+        .modal-panel .why-choose strong {
+            color: var(--redline);
         }
     </style>
     <script>
@@ -73,12 +261,10 @@
     <!-- ===== HEADER ===== -->
     <header id="siteHeader">
         <div class="wrap nav">
+            <!-- LOGO -->
             <a class="logo" href="../">
-                <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
-                    <rect x="1" y="1" width="30" height="30" rx="6" />
-                    <path class="logo-mark-line" d="M5 19h5l2-9 4 18 3-13 2 4h6" />
-                </svg>
-                <span class="logo-text">REDLINE<span class="logo-sub">SECURITY</span></span>
+                <img src="../assets/logo.png" alt="Redline Security logo" class="logo-img" style="height:32px; width:auto; flex-shrink:0;" />
+                <span class="logo-text">Michael<span class="logo-sub">Williams</span></span>
             </a>
             <nav class="nav-links" id="navLinks">
                 <a href="../" data-nav>Home</a>
@@ -117,47 +303,64 @@
             </div>
         </section>
 
-        <!-- ===== TRACKS ===== -->
+        <!-- ===== TRACKS (with images) ===== -->
         <section>
             <div class="wrap">
                 <div class="tracks">
+                    <!-- Penetration Testing Track -->
                     <div class="track assess reveal">
-                        <span class="track-tag">Assessment Track</span>
-                        <h3>Penetration Testing</h3>
-                        <p>Manual, adversary-style testing against the systems your business actually depends on — not an automated scan with a logo on the cover page.</p>
-                        <ul class="track-list">
-                            <li><span>Network &amp; infrastructure pentest</span><span class="code">NET-01</span></li>
-                            <li><span>Web &amp; API application testing</span><span class="code">APP-02</span></li>
-                            <li><span>Cloud configuration review</span><span class="code">CLD-03</span></li>
-                            <li><span>Authorized social engineering</span><span class="code">SOC-04</span></li>
-                            <li><span>Red team simulation</span><span class="code">RED-05</span></li>
-                        </ul>
-                        <button class="service-more" type="button" data-modal-trigger data-service="pentest">
-                            <svg><use href="#icon-compass"/></svg>
-                            More info / Contact us
-                        </button>
+                        <div class="track-content">
+                            <div class="track-text">
+                                <span class="track-tag">Assessment Track</span>
+                                <h3>Penetration Testing</h3>
+                                <p>Manual, adversary-style testing against the systems your business actually depends on — not an automated scan with a logo on the cover page.</p>
+                                <ul class="track-list">
+                                    <li><span>Network &amp; infrastructure pentest</span><span class="code">NET-01</span></li>
+                                    <li><span>Web &amp; API application testing</span><span class="code">APP-02</span></li>
+                                    <li><span>Cloud configuration review</span><span class="code">CLD-03</span></li>
+                                    <li><span>Authorized social engineering</span><span class="code">SOC-04</span></li>
+                                    <li><span>Red team simulation</span><span class="code">RED-05</span></li>
+                                </ul>
+                                <button class="service-more" type="button" data-modal-trigger data-service="pentest">
+                                    <svg><use href="#icon-compass"/></svg>
+                                    More info / Contact us
+                                </button>
+                            </div>
+                            <div class="track-image">
+                                <img src="../assets/image.png" alt="Penetration Testing" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'placeholder-img\'>Upload image in modal</div>';" />
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Training Track -->
                     <div class="track train reveal" data-reveal-delay="120">
-                        <span class="track-tag">Training Track</span>
-                        <h3>Offensive Security Training</h3>
-                        <p>Cohort-based and in-house training that turns your engineers into the first line of defense, taught by people who test in production.</p>
-                        <ul class="track-list">
-                            <li><span>Ethical hacking bootcamp</span><span class="code">TRN-01</span></li>
-                            <li><span>OSCP / CEH exam preparation</span><span class="code">TRN-02</span></li>
-                            <li><span>Corporate security awareness</span><span class="code">TRN-03</span></li>
-                            <li><span>Live-fire lab environments</span><span class="code">TRN-04</span></li>
-                            <li><span>Secure code review workshops</span><span class="code">TRN-05</span></li>
-                        </ul>
-                        <button class="service-more" type="button" data-modal-trigger data-service="training">
-                            <svg><use href="#icon-compass"/></svg>
-                            More info / Contact us
-                        </button>
+                        <div class="track-content">
+                            <div class="track-text">
+                                <span class="track-tag">Training Track</span>
+                                <h3>Offensive Security Training</h3>
+                                <p>Cohort-based and in-house training that turns your engineers into the first line of defense, taught by people who test in production.</p>
+                                <ul class="track-list">
+                                    <li><span>Ethical hacking bootcamp</span><span class="code">TRN-01</span></li>
+                                    <li><span>OSCP / CEH exam preparation</span><span class="code">TRN-02</span></li>
+                                    <li><span>Corporate security awareness</span><span class="code">TRN-03</span></li>
+                                    <li><span>Live-fire lab environments</span><span class="code">TRN-04</span></li>
+                                    <li><span>Secure code review workshops</span><span class="code">TRN-05</span></li>
+                                </ul>
+                                <button class="service-more" type="button" data-modal-trigger data-service="training">
+                                    <svg><use href="#icon-compass"/></svg>
+                                    More info / Contact us
+                                </button>
+                            </div>
+                            <div class="track-image">
+                                <img src="../assets/image.png" alt="Offensive Security Training" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'placeholder-img\'>Upload image in modal</div>';" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== OTHER SERVICES ===== -->
+        <!-- ===== OTHER SERVICES (with images) ===== -->
         <section class="section">
             <div class="wrap other-services-wrap">
                 <div class="section-head reveal">
@@ -165,25 +368,44 @@
                     <h3 class="sub-head">A few more ways we help teams stay ahead.</h3>
                 </div>
                 <div class="other-services-grid">
+                    <!-- Incident Response -->
                     <button class="service-card reveal" type="button" data-modal-trigger data-service="incident">
+                        <div class="service-image">
+                            <img src="../assets/image.png" alt="Incident Response" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'placeholder-img\'>Upload image</div>';" />
+                        </div>
                         <svg class="service-card-icon"><use href="#icon-flag"/></svg>
                         <h4>Incident Response</h4>
                         <p>Rapid-response investigation and containment when something's already gone wrong.</p>
                         <span class="service-card-link">More info <svg><use href="#icon-compass"/></svg></span>
                     </button>
+
+                    <!-- Compliance & Audit -->
                     <button class="service-card reveal" type="button" data-reveal-delay="60" data-modal-trigger data-service="compliance">
+                        <div class="service-image">
+                            <img src="../assets/image.png" alt="Compliance & Audit" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'placeholder-img\'>Upload image</div>';" />
+                        </div>
                         <svg class="service-card-icon"><use href="#icon-doc"/></svg>
                         <h4>Compliance &amp; Audit</h4>
                         <p>Evidence-ready testing mapped to SOC 2, ISO 27001, and PCI-DSS requirements.</p>
                         <span class="service-card-link">More info <svg><use href="#icon-compass"/></svg></span>
                     </button>
+
+                    <!-- Cloud Security Review -->
                     <button class="service-card reveal" type="button" data-reveal-delay="120" data-modal-trigger data-service="cloud">
+                        <div class="service-image">
+                            <img src="../assets/image.png" alt="Cloud Security Review" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'placeholder-img\'>Upload image</div>';" />
+                        </div>
                         <svg class="service-card-icon"><use href="#icon-cloud"/></svg>
                         <h4>Cloud Security Review</h4>
                         <p>IAM, network, and workload configuration review across AWS, Azure, and GCP.</p>
                         <span class="service-card-link">More info <svg><use href="#icon-compass"/></svg></span>
                     </button>
+
+                    <!-- vCISO Advisory -->
                     <button class="service-card reveal" type="button" data-reveal-delay="180" data-modal-trigger data-service="vciso">
+                        <div class="service-image">
+                            <img src="../assets/image.png" alt="vCISO Advisory" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'placeholder-img\'>Upload image</div>';" />
+                        </div>
                         <svg class="service-card-icon"><use href="#icon-users"/></svg>
                         <h4>vCISO Advisory</h4>
                         <p>Fractional security leadership for teams that need direction, not another hire.</p>
@@ -193,7 +415,7 @@
             </div>
         </section>
 
-        <!-- ===== ROOM FOR HIRE ===== -->
+        <!-- ===== ROOM FOR HIRE (with image) ===== -->
         <section class="section" style="padding-top:0;">
             <div class="wrap">
                 <div class="room-hire reveal">
@@ -320,14 +542,354 @@
     <!-- ===== BACK TO TOP ===== -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
+    <!-- ===== MODAL OVERLAY (with all required IDs) ===== -->
+    <div class="modal-overlay" id="serviceModal" aria-hidden="true">
+        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close" id="modalClose" aria-label="Close dialog" type="button">&times;</button>
+            <svg class="modal-icon" id="modalIcon"><use href="#icon-compass"/></svg>
+            <span class="eyebrow" id="modalTag">SERVICE</span>
+            <h3 id="modalTitle">Service title</h3>
+            <!-- Short description (used by script.js) -->
+            <p id="modalDesc"></p>
+            <!-- Detailed content injected by page-specific script -->
+            <div id="modalDetailedContent"></div>
+            <!-- Feature list (used by script.js) -->
+            <ul class="modal-list" id="modalList"></ul>
+            <div class="modal-actions">
+                <a class="btn btn-solid" href="../contact/" id="modalCta"><span>Contact us about this</span></a>
+            </div>
+            <!-- Upload section will be added dynamically -->
+        </div>
+    </div>
+
     <!-- ===== SHARED SCRIPTS ===== -->
     <script src="../script.js"></script>
 
-    <!-- ===== PAGE-SPECIFIC INIT ===== -->
+    <!-- ===== PAGE-SPECIFIC SCRIPT ===== -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var wrap = document.getElementById('pageWrap');
             if (wrap) wrap.classList.add('is-entering');
+
+            // ---- RICH SERVICE DATA ----
+            var detailedServices = {
+                pentest: {
+                    tag: 'ASSESSMENT TRACK',
+                    icon: 'icon-network',
+                    title: 'Penetration Testing',
+                    desc: 'Manual, adversary-style testing against the systems your business actually depends on — networks, web apps, APIs, and cloud config, tested the way a real attacker would approach them.',
+                    detailedDesc: `<p><strong>What we test:</strong> We simulate real-world attacks to uncover vulnerabilities that automated scanners miss. Our testers think like attackers, combining multiple techniques to chain low-risk issues into high-impact breaches.</p>
+                                  <p><strong>How we work:</strong> Every engagement starts with a clear scope and rules of engagement. We test within agreed boundaries, and we deliver a report that not only lists findings but also explains how to reproduce them and fix them.</p>`,
+                    features: [
+                        'Network & infrastructure pentest (external/internal)',
+                        'Web & API application testing (REST, GraphQL, SOAP)',
+                        'Cloud configuration review (AWS, Azure, GCP)',
+                        'Authorized social engineering (phishing, vishing)',
+                        'Red team simulation (full-scope, multi-week engagements)',
+                        'Mobile app testing (iOS, Android)'
+                    ],
+                    whyChoose: 'We find the faults that matter — not just CVSS scores, but real business impact. Our reports are actionable, with clear reproduction steps and remediation guidance.'
+                },
+                training: {
+                    tag: 'TRAINING TRACK',
+                    icon: 'icon-users',
+                    title: 'Offensive Security Training',
+                    desc: 'Cohort-based and in-house training that turns your engineers into the first line of defense, taught by people who test in production, not just in slides.',
+                    detailedDesc: `<p><strong>Hands-on, real-world:</strong> Our trainers are active practitioners who bring their field experience into the classroom. You won’t just watch slides – you’ll hack live lab environments and learn the techniques used in actual breaches.</p>
+                                  <p><strong>Tailored to your stack:</strong> We adapt content to your tech stack (e.g., AWS, Kubernetes, .NET, React) so that the training is immediately relevant to your team’s daily work.</p>`,
+                    features: [
+                        'Ethical hacking bootcamp (5 days, immersive)',
+                        'OSCP / CEH exam preparation and coaching',
+                        'Corporate security awareness (developer-focused)',
+                        'Live-fire lab environments with real vulnerabilities',
+                        'Secure code review workshops (language-specific)',
+                        'Customized on-site or remote delivery'
+                    ],
+                    whyChoose: 'We don’t just teach theory – we teach the offensive mindset, so your engineers can think like attackers and build more secure systems from day one.'
+                },
+                incident: {
+                    tag: 'INCIDENT RESPONSE',
+                    icon: 'icon-flag',
+                    title: 'Incident Response',
+                    desc: 'When something has already gone wrong, we help you contain it, understand it, and close the door it came through — with a clear timeline for stakeholders and regulators.',
+                    detailedDesc: `<p><strong>Rapid triage:</strong> Our team is available 24/7 to jump on active incidents. We focus on containment first, then forensics, so you can resume business quickly while preserving evidence.</p>
+                                  <p><strong>Post-incident resilience:</strong> After the smoke clears, we help you harden your environment and create a playbook to prevent similar incidents in the future.</p>`,
+                    features: [
+                        '24/7 rapid-response triage and containment',
+                        'Forensic timeline reconstruction (logs, memory, disk)',
+                        'Containment & eradication support (malware removal, access revocation)',
+                        'Post-incident hardening plan and tabletop exercises',
+                        'Crisis communication support (internal & external)'
+                    ],
+                    whyChoose: 'We’ve responded to breaches across industries – from ransomware to insider threats. We bring calm, clarity, and proven playbooks when every minute counts.'
+                },
+                compliance: {
+                    tag: 'COMPLIANCE & AUDIT',
+                    icon: 'icon-doc',
+                    title: 'Compliance & Audit',
+                    desc: 'Evidence-ready testing mapped directly to the controls your auditor will ask about, so the same engagement covers your security and your paperwork.',
+                    detailedDesc: `<p><strong>Audit-ready evidence:</strong> We align our testing with specific compliance frameworks, so your findings double as audit evidence. No need to run separate assessments for security and compliance.</p>
+                                  <p><strong>Gap analysis:</strong> We identify where your current controls fall short and provide a roadmap to meet the required standards, with minimal disruption to your operations.</p>`,
+                    features: [
+                        'SOC 2 Type I & II readiness assessments',
+                        'ISO 27001 control testing and gap analysis',
+                        'PCI-DSS scoped assessments (SAQ and on-site)',
+                        'Audit-ready evidence packages (screenshots, logs, test results)',
+                        'Third-party vendor security reviews'
+                    ],
+                    whyChoose: 'We speak both security and compliance fluently – our reports are built to satisfy auditors while being useful to your engineering team.'
+                },
+                cloud: {
+                    tag: 'CLOUD SECURITY',
+                    icon: 'icon-cloud',
+                    title: 'Cloud Security Review',
+                    desc: 'A structured review of identity, network, and workload configuration across your cloud estate, focused on the misconfigurations that actually get exploited.',
+                    detailedDesc: `<p><strong>Deep cloud visibility:</strong> We examine your cloud environments (AWS, Azure, GCP) from the inside out – IAM roles, network security groups, storage permissions, and container configurations – to find the mistakes that attackers abuse.</p>
+                                  <p><strong>Actionable remediation:</strong> Every finding includes a specific fix, often with Infrastructure-as-Code (Terraform, CloudFormation) examples to make resolution easy.</p>`,
+                    features: [
+                        'IAM & privilege review (least privilege, role analysis)',
+                        'Network segmentation & exposure analysis (VPC, security groups)',
+                        'Workload & container hardening (ECS, EKS, AKS)',
+                        'Data protection (S3, RDS, storage account configurations)',
+                        'Cloud-native tooling (GuardDuty, Security Hub, Azure Sentinel)'
+                    ],
+                    whyChoose: 'We understand cloud at a deep level – we’re not just running scanners; we’re thinking like cloud attackers who know the platform internals.'
+                },
+                vciso: {
+                    tag: 'ADVISORY',
+                    icon: 'icon-users',
+                    title: 'vCISO Advisory',
+                    desc: 'Fractional security leadership for teams that need direction — board reporting, roadmap prioritization, and vendor oversight — without a full-time hire.',
+                    detailedDesc: `<p><strong>Strategic guidance:</strong> We act as your virtual Chief Information Security Officer, providing leadership on security strategy, risk management, and compliance – on a flexible, part‑time basis.</p>
+                                  <p><strong>Board-ready communications:</strong> We help you translate technical risk into business language that executives and board members understand, with clear metrics and actionable recommendations.</p>`,
+                    features: [
+                        'Security roadmap & prioritization (90-day and 12-month)',
+                        'Board & investor reporting support (risk registers, metrics)',
+                        'Vendor & tooling review (selection, procurement, integration)',
+                        'On-call advisory hours for urgent decisions',
+                        'Incident response plan review and tabletop exercises'
+                    ],
+                    whyChoose: 'You get senior security experience without the overhead of a full-time executive – we plug into your existing team and provide clarity, not complexity.'
+                },
+                room: {
+                    tag: 'SPACE FOR HIRE',
+                    icon: 'icon-building',
+                    title: 'Cyber Range — Room Hire',
+                    desc: 'Our fitted training room is available to hire for private workshops, CTFs, and vendor-led sessions, with an isolated lab network and a briefing screen ready to go.',
+                    detailedDesc: `<p><strong>Fully equipped:</strong> Our room seats up to 12 participants and comes with a dedicated lab network isolated from the internet, so you can run hands-on exercises safely. The room is equipped with a large briefing screen, whiteboards, and charging stations.</p>
+                                  <p><strong>Flexible booking:</strong> Hire by the half-day, full-day, or multi-day – we also offer optional facilitation by our trainers if you need an expert to run the session.</p>`,
+                    features: [
+                        'Up to 12 seats, isolated lab network (no internet exposure)',
+                        'Half-day, full-day, and multi-day rates',
+                        'Optional Redline facilitator on request',
+                        'Central location with easy transit access',
+                        'On-site catering options available'
+                    ],
+                    whyChoose: 'A professional space purpose-built for security training – you can focus on the content while we handle the logistics.'
+                }
+            };
+
+            // ---- MERGE INTO GLOBAL SERVICES ----
+            if (typeof window.SERVICES !== 'undefined') {
+                for (var key in detailedServices) {
+                    if (detailedServices.hasOwnProperty(key)) {
+                        if (!window.SERVICES[key]) window.SERVICES[key] = {};
+                        var service = window.SERVICES[key];
+                        service.tag = detailedServices[key].tag;
+                        service.icon = detailedServices[key].icon;
+                        service.title = detailedServices[key].title;
+                        service.desc = detailedServices[key].desc;
+                        service.detailedDesc = detailedServices[key].detailedDesc;
+                        service.list = detailedServices[key].features; // overwrite list with features
+                        service.whyChoose = detailedServices[key].whyChoose;
+                    }
+                }
+            } else {
+                // If SERVICES is not defined, define it now
+                window.SERVICES = detailedServices;
+            }
+
+            // ---- OVERRIDE openModal TO INJECT DETAILED CONTENT ----
+            // script.js defines openModal, we want to add our extra content.
+            // We'll store the original function and replace it.
+            // Since openModal is defined inside script.js, we can access it after it's defined.
+            // We'll use a small timeout to ensure script.js has run.
+            setTimeout(function() {
+                if (typeof openModal === 'function') {
+                    var originalOpenModal = openModal;
+                    window.openModal = function(key, triggerEl) {
+                        // Call original to set basic fields (icon, tag, title, desc, list)
+                        originalOpenModal(key, triggerEl);
+
+                        // Now add extra content
+                        var service = window.SERVICES[key];
+                        if (service && service.detailedDesc) {
+                            var contentDiv = document.getElementById('modalDetailedContent');
+                            if (contentDiv) {
+                                var html = '<div class="detailed-description">' + service.detailedDesc + '</div>';
+                                if (service.whyChoose) {
+                                    html += '<div class="why-choose"><strong>Why choose this:</strong> ' + service.whyChoose + '</div>';
+                                }
+                                contentDiv.innerHTML = html;
+                            }
+                        }
+                    };
+                }
+            }, 100);
+
+            // ---- IMAGE UPLOAD SECTION (add to modal) ----
+            var modalPanel = document.querySelector('.modal-panel');
+            if (modalPanel) {
+                if (!modalPanel.querySelector('.modal-upload-section')) {
+                    var uploadSection = document.createElement('div');
+                    uploadSection.className = 'modal-upload-section';
+                    uploadSection.innerHTML = `
+                        <h4>Upload product image</h4>
+                        <div class="upload-area">
+                            <div class="upload-preview" id="modalUploadPreview">
+                                <img id="modalUploadImg" src="" alt="Product preview" style="display:none;" />
+                                <div id="modalPlaceholder" style="padding:20px; text-align:center; color:var(--ink-soft); font-size:13px;">No image uploaded</div>
+                            </div>
+                            <div class="upload-actions">
+                                <button class="upload-btn" id="modalUploadBtn">Choose Image</button>
+                                <button class="remove-btn" id="modalRemoveBtn" style="display:none;">Remove</button>
+                                <input type="file" id="modalFileInput" class="file-input" accept="image/*" />
+                            </div>
+                        </div>
+                    `;
+                    var modalActions = modalPanel.querySelector('.modal-actions');
+                    if (modalActions) {
+                        modalPanel.insertBefore(uploadSection, modalActions);
+                    } else {
+                        modalPanel.appendChild(uploadSection);
+                    }
+
+                    // Attach event listeners
+                    var fileInput = document.getElementById('modalFileInput');
+                    var uploadBtn = document.getElementById('modalUploadBtn');
+                    var removeBtn = document.getElementById('modalRemoveBtn');
+                    var previewImg = document.getElementById('modalUploadImg');
+                    var placeholder = document.getElementById('modalPlaceholder');
+                    var currentServiceKey = null;
+
+                    var modalOverlay = document.getElementById('serviceModal');
+                    if (modalOverlay) {
+                        var observer = new MutationObserver(function(mutations) {
+                            mutations.forEach(function(mutation) {
+                                if (mutation.attributeName === 'class') {
+                                    if (modalOverlay.classList.contains('open')) {
+                                        var title = document.getElementById('modalTitle').textContent;
+                                        var serviceKey = Object.keys(window.SERVICES).find(function(key) {
+                                            return window.SERVICES[key] && window.SERVICES[key].title === title;
+                                        });
+                                        if (serviceKey) {
+                                            currentServiceKey = serviceKey;
+                                            loadImageForService(serviceKey);
+                                        }
+                                    }
+                                }
+                            });
+                        });
+                        observer.observe(modalOverlay, { attributes: true });
+                    }
+
+                    function loadImageForService(serviceKey) {
+                        var saved = localStorage.getItem('service-image-' + serviceKey);
+                        if (saved) {
+                            previewImg.src = saved;
+                            previewImg.style.display = 'block';
+                            placeholder.style.display = 'none';
+                            removeBtn.style.display = 'inline-block';
+                        } else {
+                            previewImg.style.display = 'none';
+                            placeholder.style.display = 'block';
+                            removeBtn.style.display = 'none';
+                        }
+                    }
+
+                    uploadBtn.addEventListener('click', function() {
+                        fileInput.click();
+                    });
+
+                    fileInput.addEventListener('change', function(e) {
+                        var file = e.target.files[0];
+                        if (file && currentServiceKey) {
+                            var reader = new FileReader();
+                            reader.onload = function(ev) {
+                                var dataUrl = ev.target.result;
+                                localStorage.setItem('service-image-' + currentServiceKey, dataUrl);
+                                previewImg.src = dataUrl;
+                                previewImg.style.display = 'block';
+                                placeholder.style.display = 'none';
+                                removeBtn.style.display = 'inline-block';
+                                updateServicePageImages(currentServiceKey, dataUrl);
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    });
+
+                    removeBtn.addEventListener('click', function() {
+                        if (currentServiceKey) {
+                            localStorage.removeItem('service-image-' + currentServiceKey);
+                            previewImg.style.display = 'none';
+                            placeholder.style.display = 'block';
+                            removeBtn.style.display = 'none';
+                            updateServicePageImages(currentServiceKey, null);
+                        }
+                    });
+
+                    function updateServicePageImages(serviceKey, dataUrl) {
+                        var selectorMap = {
+                            'pentest': '.track.assess .track-image img',
+                            'training': '.track.train .track-image img',
+                            'incident': '.service-card[data-service="incident"] .service-image img',
+                            'compliance': '.service-card[data-service="compliance"] .service-image img',
+                            'cloud': '.service-card[data-service="cloud"] .service-image img',
+                            'vciso': '.service-card[data-service="vciso"] .service-image img',
+                            'room': '.room-hire .room-hire-art'
+                        };
+                        var selector = selectorMap[serviceKey];
+                        if (selector) {
+                            var imgElements = document.querySelectorAll(selector);
+                            imgElements.forEach(function(img) {
+                                if (dataUrl) {
+                                    img.src = dataUrl;
+                                    img.style.display = 'block';
+                                    var parent = img.parentElement;
+                                    if (parent.classList.contains('placeholder-img')) {
+                                        var newImg = document.createElement('img');
+                                        newImg.src = dataUrl;
+                                        newImg.alt = img.alt || 'Service image';
+                                        parent.parentElement.replaceChild(newImg, parent);
+                                    }
+                                } else {
+                                    var parent = img.parentElement;
+                                    if (parent.tagName === 'PICTURE' || parent.tagName === 'DIV') {
+                                        var placeholderDiv = document.createElement('div');
+                                        placeholderDiv.className = 'placeholder-img';
+                                        placeholderDiv.textContent = 'Upload image in modal';
+                                        parent.parentElement.replaceChild(placeholderDiv, parent);
+                                    } else {
+                                        img.style.display = 'none';
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    // Load all saved images on page load
+                    function loadAllSavedImages() {
+                        var serviceKeys = Object.keys(window.SERVICES);
+                        serviceKeys.forEach(function(key) {
+                            var saved = localStorage.getItem('service-image-' + key);
+                            if (saved) {
+                                updateServicePageImages(key, saved);
+                            }
+                        });
+                    }
+                    loadAllSavedImages();
+                }
+            }
         });
     </script>
 </body>

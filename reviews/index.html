@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redline Security — Reviews</title>
+    <title>Michael Williams — Reviews</title>
     <meta name="description" content="Read what our clients say about their engagements and training cohorts. Then leave your own review." />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2312181F'/%3E%3Cpath d='M4 18h6l2-9 4 18 3-13 2 4h7' stroke='%23C8391F' stroke-width='2' fill='none'/%3E%3C/svg%3E" />
+    <link rel="icon" href="../assets/logo.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -81,12 +81,10 @@
     <!-- ===== HEADER ===== -->
     <header id="siteHeader">
         <div class="wrap nav">
+            <!--LOGO -->
             <a class="logo" href="../">
-                <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
-                    <rect x="1" y="1" width="30" height="30" rx="6" />
-                    <path class="logo-mark-line" d="M5 19h5l2-9 4 18 3-13 2 4h6" />
-                </svg>
-                <span class="logo-text">REDLINE<span class="logo-sub">SECURITY</span></span>
+                <img src="../assets/logo.png" alt="Redline Security logo" class="logo-img" style="height:32px; width:auto; flex-shrink:0;" />
+                <span class="logo-text">Michael<span class="logo-sub">Williams</span></span>
             </a>
             <nav class="nav-links" id="navLinks">
                 <a href="../" data-nav>Home</a>
@@ -255,11 +253,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             var wrap = document.getElementById('pageWrap');
             if (wrap) wrap.classList.add('is-entering');
-
-            // The review logic (form submission, rendering) is already in ../script.js
-            // It will fire automatically because it listens for DOMContentLoaded.
-            // We just need to ensure the seed reviews show up.
-            // The script.js already handles loading from localStorage or seeding.
         });
     </script>
 </body>
