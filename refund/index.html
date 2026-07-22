@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trinity CEH — Refund Policy</title>
+    <meta name="description" content="Refund policy for Trinity CEH — clear terms on cancellations, refunds, and service agreements." />
+    <link rel="icon" href="../assets/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+        .page-wrap {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.45s cubic-bezier(.22, .85, .32, 1),
+                transform 0.45s cubic-bezier(.22, .85, .32, 1);
+        }
+        .page-wrap.is-exiting {
+            opacity: 0;
+            transform: translateY(-28px);
+            pointer-events: none;
+        }
+        .page-wrap.is-entering {
+            animation: fadeSlideIn 0.55s cubic-bezier(.22, .85, .32, 1) forwards;
+        }
+        @keyframes fadeSlideIn {
+            0% { opacity: 0; transform: translateY(32px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .page-wrap.is-exiting,
+            .page-wrap.is-entering {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
+        .policy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0 60px;
+        }
+        .policy-content h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 40px 0 12px;
+            color: var(--text);
+        }
+        .policy-content h2:first-of-type {
+            margin-top: 0;
+        }
+        .policy-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 28px 0 10px;
+            color: var(--text);
+        }
+        .policy-content p {
+            color: var(--text-soft);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+        .policy-content ul {
+            list-style: disc;
+            padding-left: 24px;
+            margin: 12px 0 20px;
+        }
+        .policy-content ul li {
+            color: var(--text-soft);
+            line-height: 1.8;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        .policy-content .last-updated {
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .policy-content .highlight-box {
+            background: var(--surface-2);
+            border-left: 3px solid var(--primary-light);
+            padding: 20px 24px;
+            border-radius: 6px;
+            margin: 24px 0;
+        }
+        .policy-content .highlight-box p {
+            margin-bottom: 0;
+        }
+        .policy-content .warning-box {
+            background: rgba(200, 57, 31, 0.08);
+            border-left: 3px solid var(--redline);
+            padding: 20px 24px;
+            border-radius: 6px;
+            margin: 24px 0;
+        }
+        .policy-content .warning-box p {
+            margin-bottom: 0;
+            color: var(--text);
+        }
+        .policy-content .effective-date {
+            font-family: var(--mono);
+            font-size: 14px;
+            color: var(--text-soft);
+            margin-bottom: 8px;
+        }
+        .policy-content .refund-subsection {
+            margin-top: 8px;
+        }
+        .policy-content .refund-subsection strong {
+            color: var(--text);
+        }
+    </style>
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('redline-theme');
+                var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body>
+
+    <!-- ===== SCROLL PROGRESS ===== -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header id="siteHeader">
+        <div class="wrap nav">
+            <a class="logo" href="../">
+                <img src="../assets/logo.png" alt="Trinity CEH logo" class="logo-img" style="height:32px; width:auto; flex-shrink:0;" />
+                <span class="logo-text">Trinity<span class="logo-sub">CEH</span></span>
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="../" data-nav>Home</a>
+                <a href="../about/" data-nav>About</a>
+                <a href="../services/" data-nav>Services</a>
+                <a href="../demo/" data-nav>Demo</a>
+                <a href="../reviews/" data-nav>Reviews</a>
+                <a href="../faq/" data-nav>FAQ</a>
+            </nav>
+            <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" aria-pressed="false" type="button">
+                <span class="theme-toggle-track">
+                    <span class="theme-toggle-thumb">
+                        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><g class="sun-rays"><line x1="12" y1="1.5" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.5" y2="6.5"/><line x1="17.5" y1="17.5" x2="19.6" y2="19.6"/><line x1="4.4" y1="19.6" x2="6.5" y2="17.5"/><line x1="17.5" y1="6.5" x2="19.6" y2="4.4"/></g></svg>
+                        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+                    </span>
+                </span>
+            </button>
+            <a class="nav-cta" href="../contact/"><span>Request Assessment</span></a>
+            <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== PAGE WRAP ===== -->
+    <main class="page-wrap is-entering" id="pageWrap">
+
+        <!-- ===== HERO ===== -->
+        <section style="padding:120px 0 20px;">
+            <div class="wrap">
+                <div class="section-head reveal" style="max-width:100%;">
+                    <p class="eyebrow">Refund Policy</p>
+                    <h1>Clear, fair, and transparent.</h1>
+                    <p style="max-width:600px;">We strive to provide reliable and effective technology solutions in the pursuit of truth and relationship clarity. Please read our refund policy carefully.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTENT ===== -->
+        <section>
+            <div class="wrap">
+                <div class="policy-content reveal">
+
+                    <p class="effective-date">Effective Date: <strong>24th June, 2020</strong></p>
+                    <p class="last-updated">Last updated: March 2026</p>
+
+                    <p>At Trinity CEH, we strive to provide reliable and effective technology solutions in the pursuit of truth and relationship clarity. Due to the sensitive and digital nature of our services, we maintain the following refund policy.</p>
+
+                    <div class="warning-box">
+                        <p><strong>⚠️ Important:</strong> All purchases made through our platform are considered final and non-refundable, except where explicitly stated in this policy or required by applicable law.</p>
+                    </div>
+
+                    <h2>1. General Policy</h2>
+                    <p>All purchases made through our platform—whether for software access, subscription services, consultations, or investigative tools—are considered <strong>final and non-refundable</strong>, except where explicitly stated in this policy or required by applicable law.</p>
+
+                    <h2>2. Eligibility for Refunds</h2>
+                    <p>We may offer refunds under the following limited circumstances:</p>
+
+                    <div class="refund-subsection">
+                        <p><strong>a. Technical Failures</strong> — If our systems fail to deliver a paid service due to a verified technical issue (e.g., system error, failure to activate tools), and we are unable to resolve the issue within <strong>72 hours</strong>, you may request a full or partial refund.</p>
+                    </div>
+
+                    <div class="refund-subsection">
+                        <p><strong>b. Duplicate Charges</strong> — If you are mistakenly charged more than once for the same product or service, we will refund the duplicate payment(s) upon request.</p>
+                    </div>
+
+                    <div class="refund-subsection">
+                        <p><strong>c. Unauthorized Transactions</strong> — If you believe a charge was made without your consent, please report it within <strong>7 days</strong> of the transaction. We will investigate and process a refund if verified.</p>
+                    </div>
+
+                    <div class="refund-subsection">
+                        <p><strong>d. Service Not Rendered</strong> — If you paid for a service that was never initiated or delivered (e.g., a scheduled consultation that was not provided), you may be eligible for a refund, minus any processing fees.</p>
+                    </div>
+
+                    <h2>3. Non-Refundable Services</h2>
+                    <p>We do not provide refunds for:</p>
+                    <ul>
+                        <li>Digital tools or services once activated or accessed.</li>
+                        <li>Time-based subscriptions after the billing cycle has started.</li>
+                        <li>AI-based or manual reports already generated.</li>
+                        <li>Consultations or investigations already conducted or partially completed.</li>
+                        <li><strong>User dissatisfaction based on outcome</strong> (e.g., results not meeting expectations).</li>
+                    </ul>
+                    <p>Our tools are designed to assist, not guarantee specific outcomes. As such, we do not refund based on conclusions, interpretations, or subjective impact.</p>
+
+                    <div class="highlight-box">
+                        <p><strong>📌 Remember:</strong> Our services are designed to assist, not guarantee specific outcomes. We do not refund based on conclusions, interpretations, or subjective impact.</p>
+                    </div>
+
+                    <h2>4. Subscription Cancellations</h2>
+                    <p>You may cancel your subscription at any time. Cancellation will take effect at the end of the current billing cycle. We do not offer prorated refunds for partially used periods.</p>
+
+                    <h2>5. How to Request a Refund</h2>
+                    <p>To request a refund, please <a href="../contact/">contact us</a> through our contact page.</p>
+                    <p>Include the following in your message:</p>
+                    <ul>
+                        <li>Full name and account email.</li>
+                        <li>Transaction ID or receipt.</li>
+                        <li>Description of the issue.</li>
+                        <li>Any relevant screenshots or supporting evidence.</li>
+                    </ul>
+
+                    <h2>6. Chargebacks</h2>
+                    <p>If you initiate a chargeback without contacting us first, we reserve the right to suspend your account and deny future service. We strongly encourage resolving disputes through our support team.</p>
+
+                    <h2>7. Policy Updates</h2>
+                    <p>We reserve the right to update this Refund Policy at any time. Updates will be posted on this page and, where appropriate, notified to you via email or in-app alerts.</p>
+
+                    <h2>8. Need Help?</h2>
+                    <p>If you have any questions or concerns about billing, payments, or this policy, please don't hesitate to reach out to our support team.</p>
+                    <ul>
+                        <li>📧 <strong>Email:</strong> <a href="mailto:support@trinityceh.example">support@trinityceh.example</a></li>
+                        <li>💬 <strong>Contact Form:</strong> <a href="../contact/">Visit our contact page</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="wrap">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+                            <rect x="1" y="1" width="30" height="30" rx="6" />
+                            <path class="logo-mark-line" d="M5 19h5l2-9 4 18 3-13 2 4h6" />
+                        </svg>
+                        Michael Williams
+                    </div>
+                    <p>Professional hacking and cybersecurity services — trusted by over 21,300+ clients worldwide.</p>
+                    <div class="social-row">
+                        <a class="social-icon" href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.5 4.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 9.8h3V21H3ZM9.5 9.8H12v1.5h.05c.4-.75 1.5-1.6 3.1-1.6 3.3 0 3.9 2.1 3.9 4.9V21h-3v-4.9c0-1.2 0-2.7-1.6-2.7-1.6 0-1.9 1.3-1.9 2.6V21h-3Z"/></svg></a>
+                        <a class="social-icon" href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l7 9.2L4.4 20H6.6l5.6-5.9L16.7 20H20l-7.4-9.7L19.7 4h-2.2l-5.2 5.5L8 4Z"/></svg></a>
+                        <a class="social-icon" href="#" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.3-3.4-1.3-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.8 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7 1 .7 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a>
+                        <a class="social-icon" href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5a2.7 2.7 0 0 0-1.9 1.9A28 28 0 0 0 2 12a28 28 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-4.8ZM10 15V9l5.2 3Z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-cols">
+                    <div class="footer-col">
+                        <h5>Company</h5>
+                        <a href="../about/">About</a>
+                        <a href="../services/">Services</a>
+                        <a href="../demo/">Demo</a>
+                        <a href="../reviews/">Reviews</a>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Support</h5>
+                        <a href="../faq/">FAQ</a>
+                        <a href="../privacy/">Privacy Policy</a>
+                        <a href="./">Refund Policy</a>
+                        <a href="../contact/">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Trinity CEH. All rights reserved.</span>
+                <span>Engagements conducted under signed authorization only.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <!-- ===== SHARED SCRIPTS ===== -->
+    <script src="../script.js"></script>
+
+    <!-- ===== PAGE-SPECIFIC ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var wrap = document.getElementById('pageWrap');
+            if (wrap) wrap.classList.add('is-entering');
+        });
+    </script>
+</body>
+</html>
